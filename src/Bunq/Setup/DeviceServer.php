@@ -11,6 +11,7 @@ use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
 use Bunq\Client\BunqResponse;
 use Bunq\Exceptions\BunqObjectException;
+use Bunq\Exceptions\BunqVerificationException;
 
 /**
  * Class DeviceServer
@@ -122,8 +123,8 @@ class DeviceServer
         $this->deviceServerResponse = $this->httpClient->SendRequest($deviceServerRequest);
 
         //Verify the response.
-        if($this->httpClient->verifyResponseSignature($this->deviceServerResponse, $serverPublicKey)) {
-            //TODO: verification handling.
+        if(!$this->httpClient->verifyResponseSignature($this->deviceServerResponse, $serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
         }
     }
 
