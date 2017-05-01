@@ -1,0 +1,19 @@
+{
+  "name": "bunq_SDK",
+  "description": "SDK for the bunq API.",
+  "license": "Jelle van Hengel",
+  "keywords": ["bunq"],
+  "authors": [
+    {
+      "name": "Jelle van Hengel",
+      "email": "info@jellevanhengel.com"
+    }
+  ],
+  "require": {},
+  "require-dev":{},
+  "autoload": {
+    "psr-4": {
+      "Bunq\\": "src/Bunq/"
+    }
+  }
+}
