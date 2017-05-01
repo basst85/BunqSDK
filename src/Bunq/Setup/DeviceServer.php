@@ -77,6 +77,7 @@ class DeviceServer
      * if $customRequestHeaders is null, the default headers will be used.
      *
      * @throws BunqObjectException thrown if the required attributes are missing.
+     * @throws BunqVerificationException thrown if the response verification fails.
      */
     public function post($clientPrivateKey, $installationToken, $serverPublicKey, $customRequestHeaders = null)
     {
