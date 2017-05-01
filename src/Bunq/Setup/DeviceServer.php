@@ -58,6 +58,13 @@ class DeviceServer
      */
     private $deviceServerResponse;
 
+    /**
+     * DeviceServer constructor.
+     * @param $description String the description for the device.
+     * @param $secret String The bunq api-key.
+     * @param $permittedIps null|array the permitted ips for this DeviceServer.
+     * @param $httpClient null|BunqClient the client used to send requests.
+     */
     public function __construct($description, $secret, $permittedIps = null, $httpClient = null)
     {
         $this->description = $description;
