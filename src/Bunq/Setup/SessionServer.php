@@ -48,9 +48,15 @@ class SessionServer
      */
     private $sessionServerResponse;
 
-    public function __construct()
+    /**
+     * SessionServer constructor.
+     * @param $secret String the bunq api-key.
+     * @param $httpClient null|BunqClient the client used to sens requests.
+     */
+    public function __construct($secret, $httpClient = null)
     {
-
+        $this->secret = $secret;
+        $this->httpClient = httpClient ?: new BunqClient();
     }
 
     public function post()
