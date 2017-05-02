@@ -54,12 +54,12 @@ class BunqRequest
      * @param $body
      * @param $headers
      */
-    public function __construct($endpoint, $method, $body = null, $headers)
+    public function __construct($endpoint, $method, $headers ,$body = null)
     {
         $this->setEndpoint($endpoint);
         $this->setMethod($method);
-        $this->setBody($body);
         $this->setHeaders($headers);
+        $this->setBody($body);
 
     }
 

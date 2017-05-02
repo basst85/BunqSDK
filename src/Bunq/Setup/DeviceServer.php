@@ -66,7 +66,7 @@ class DeviceServer
      * @param $permittedIps null|array the permitted ips for this DeviceServer.
      * @param $httpClient null|BunqClient the client used to send requests.
      */
-    public function __construct($description, $secret, $permittedIps = null, $httpClient = null)
+    public function __construct($description, $secret, $permittedIps, $httpClient = null)
     {
         $this->description = $description;
         $this->secret = $secret;
@@ -120,7 +120,7 @@ class DeviceServer
         $requestMethod = 'POST';
 
         //Create the request which will be send to the server.
-        $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestBody, $requestHeaders);
+        $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
 
         //Sign the request with the installation private key.
         $signature = $this->httpClient->getRequestSignature($deviceServerRequest, $clientPrivateKey);

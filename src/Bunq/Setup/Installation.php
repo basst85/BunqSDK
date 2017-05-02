@@ -52,7 +52,7 @@ class Installation
      * @param $clientPublicKey
      * @param null $httpClient
      */
-    public function __construct($clientPublicKey = null, $httpClient = null)
+    public function __construct($clientPublicKey, $httpClient = null)
     {
         $this->clientPublicKey = $clientPublicKey;
         $this->httpClient = $httpClient ?: new BunqClient();
@@ -91,7 +91,7 @@ class Installation
         $requestMethod = 'POST';
 
         //Create the request which will be send to the server.
-        $installationRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestBody, $requestHeaders);
+        $installationRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
 
         //Execute the installationRequest and store it in the installationResponse field.
         $this->installationResponse = $this->httpClient->SendRequest($installationRequest);

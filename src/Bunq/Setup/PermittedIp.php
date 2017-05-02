@@ -56,7 +56,7 @@ class PermittedIp
      * @param $status null|String the status for the ip address.
      * @param $httpClient null|BunqClient the client used to sens requests.
      */
-    public function __construct($ip, $status = null, $httpClient = null)
+    public function __construct($ip, $status, $httpClient = null)
     {
         $this->httpClient = $httpClient ?: new BunqClient();
         $this->ip = $ip;

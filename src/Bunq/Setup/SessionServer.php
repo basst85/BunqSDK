@@ -100,7 +100,7 @@ class SessionServer
         $requestMethod = 'POST';
 
         //Create the request which will be send to the server.
-        $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestBody, $requestHeaders);
+        $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
 
         //Sign the request with the installation private key.
         $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $clientPrivateKey);
