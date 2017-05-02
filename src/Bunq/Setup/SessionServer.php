@@ -6,6 +6,7 @@ include_once('Client/BunqClient.php');
 include_once('Client/BunqRequest.php');
 include_once('Client/BunqResponse.php');
 include_once('Exceptions/BunqObjectException.php');
+include_once('Exceptions/BunqVerificationException.php');
 
 use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
