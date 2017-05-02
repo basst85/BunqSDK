@@ -62,4 +62,19 @@ class PermittedIp
         $this->ip = $ip;
         $this->status = $status;
     }
+
+    public function post()
+    {
+
+    }
+
+    public function put()
+    {
+
+    }
+
+    public function get()
+    {
+
+    }
 }
