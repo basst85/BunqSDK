@@ -108,7 +108,7 @@ class SessionServer
         //Add the request signature to the headers.
         $sessionServerRequest->setHeader(self::HEADER_REQUEST_CUSTOM_SIGNATURE, $signature);
 
-        //Execute the installationRequest and store it in the installationResponse field.
+        //Execute the sessionServerRequest and store it in the installationResponse field.
         $this->sessionServerResponse = $this->httpClient->SendRequest($sessionServerRequest);
 
         //Verify the response.
