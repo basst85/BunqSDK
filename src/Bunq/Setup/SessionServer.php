@@ -129,4 +129,68 @@ class SessionServer
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($randomInput), 4));
     }
+
+    /**
+     * @return String the response ID.
+     */
+    public function getId()
+    {
+        return json_decode($this->sessionServerResponse->getBodyString())->{'Response'}[0]->{'Id'};
+    }
+
+    /**
+     * @return String the response Token.
+     */
+    public function getToken()
+    {
+        return json_decode($this->sessionServerResponse->getBodyString())->{'Response'}[1]->{'Token'};
+    }
+
+    /**
+     * @return String the response UserCompany.
+     */
+    public function getUserCompany()
+    {
+        return json_decode($this->sessionServerResponse->getBodyString())->{'Response'}[2]->{'UserCompany'};
+    }
+
+    /**
+     * @return BunqClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * @param BunqClient $httpClient
+     */
+    public function setHttpClient($httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @return String
+     */
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
+    /**
+     * @param String $secret
+     */
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+    }
+
+    /**
+     * @return BunqResponse
+     */
+    public function getSessionServerResponse()
+    {
+        return $this->sessionServerResponse;
+    }
 }
