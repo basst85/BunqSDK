@@ -166,7 +166,7 @@ class DeviceServer
         ];
 
         //Create the requestEndpoint and requestMethod.
-        $requestEndpoint = 'installation/' . $deviceServerId;
+        $requestEndpoint = 'device-server/' . $deviceServerId;
         $requestMethod = 'GET';
 
         //Create the request which will be send to the server.
