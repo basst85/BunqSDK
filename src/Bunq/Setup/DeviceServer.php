@@ -137,6 +137,21 @@ class DeviceServer
         }
     }
 
+    /**
+     * Sends a get device server request to the server using the deviceServerId.
+     * Saves the response in the deviceServerResponse field.
+     *
+     * If the deviceServerId is null, the server will return a response containing a list of the device servers.
+     *
+     * @param $deviceServerId integer the id of the installation to get.
+     * @param $sessionToken String the session token for authorisation.
+     * @param $clientPrivateKey String the client private key for signing the request.
+     * @param $serverPublicKey String The server public key used for verification.
+     * @param $customRequestHeaders null|array the custom headers for the request.
+     * if $customRequestHeaders is null, the default headers will be used.
+     *
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
     public function get($deviceServerId, $sessionToken, $clientPrivateKey, $serverPublicKey, $customRequestHeaders = null)
     {
         //Create the requestHeaders.
