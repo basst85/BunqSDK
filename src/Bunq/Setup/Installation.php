@@ -6,11 +6,13 @@ include_once('Client/BunqClient.php');
 include_once('Client/BunqRequest.php');
 include_once('Client/BunqResponse.php');
 include_once('Exceptions/BunqObjectException.php');
+include_once('Exceptions/BunqVerificationException.php');
 
 use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
 use Bunq\Client\BunqResponse;
 use Bunq\Exceptions\BunqObjectException;
+use Bunq\Exceptions\BunqVerificationException;
 
 /**
  * Class Installation
@@ -30,6 +32,7 @@ class Installation
     const HEADER_REQUEST_CUSTOM_LANGUAGE = 'X-Bunq-Language';
     const HEADER_REQUEST_CUSTOM_REGION = 'X-Bunq-Region';
     const HEADER_REQUEST_CUSTOM_AUTHENTICATION = 'X-Bunq-Client-Authentication';
+    const HEADER_REQUEST_CUSTOM_SIGNATURE = 'X-Bunq-Client-Signature';
 
     /**
      * @var BunqClient the client which is used to send requests to the server.
@@ -77,6 +80,7 @@ class Installation
             self::HEADER_REQUEST_CUSTOM_GEOLOCATION => '0 0 0 0 000',
             self::HEADER_REQUEST_CUSTOM_LANGUAGE => 'en_US',
             self::HEADER_REQUEST_CUSTOM_REGION => 'en_US',
+
         ];
 
         if(is_null($this->clientPublicKey)) {
@@ -97,9 +101,39 @@ class Installation
         $this->installationResponse = $this->httpClient->SendRequest($installationRequest);
     }
 
-    public function get()
+    public function get($installationId, $sessionToken, $clientPrivateKey, $serverPublicKey, $customRequestHeaders = null)
     {
+        //Create the requestHeaders.
+        $requestHeaders = $customRequestHeaders ?: [
+            self::HEADER_REQUEST_CACHE_CONTROL => 'no-cache',
+            self::HEADER_REQUEST_USER_AGENT => 'SandboxPublicApi:DefaultUser',
+            self::HEADER_REQUEST_CUSTOM_AUTHENTICATION => $sessionToken,
+            self::HEADER_REQUEST_CUSTOM_REQUEST_ID => $this->createUuid(),
+            self::HEADER_REQUEST_CUSTOM_GEOLOCATION => '0 0 0 0 000',
+            self::HEADER_REQUEST_CUSTOM_LANGUAGE => 'en_US',
+            self::HEADER_REQUEST_CUSTOM_REGION => 'en_US',
+        ];
 
+        //Create the requestEndpoint and requestMethod.
+        $requestEndpoint = 'installation/' . $installationId;
+        $requestMethod = 'GET';
+
+        //Create the request which will be send to the server.
+        $installationRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($installationRequest, $clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $installationRequest->setHeader(self::HEADER_REQUEST_CUSTOM_SIGNATURE, $signature);
+
+        //Send the installationRequest and store it in the installationResponse field.
+        $this->installationResponse = $this->httpClient->SendRequest($installationRequest);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($this->installationResponse, $serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
     }
 
     /**
