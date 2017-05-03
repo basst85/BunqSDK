@@ -26,7 +26,7 @@ since this is a "Work in progress" project, not all API calls are implemented ye
 Here is a list to see which ones are:
 
 - Setup
-	- [x] Installation (POST only)
+	- [x] Installation (POST and GET only)
 	- [ ] InstallationServerPublicKey
 	- [ ] Device
 	- [x] DeviceServer (POST only)
