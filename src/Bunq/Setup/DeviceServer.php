@@ -137,9 +137,39 @@ class DeviceServer
         }
     }
 
-    public function get()
+    public function get($deviceServerId, $sessionToken, $clientPrivateKey, $serverPublicKey, $customRequestHeaders = null)
     {
+        //Create the requestHeaders.
+        $requestHeaders = $customRequestHeaders ?: [
+            self::HEADER_REQUEST_CACHE_CONTROL => 'no-cache',
+            self::HEADER_REQUEST_USER_AGENT => 'SandboxPublicApi:DefaultUser',
+            self::HEADER_REQUEST_CUSTOM_AUTHENTICATION => $sessionToken,
+            self::HEADER_REQUEST_CUSTOM_REQUEST_ID => $this->createUuid(),
+            self::HEADER_REQUEST_CUSTOM_GEOLOCATION => '0 0 0 0 000',
+            self::HEADER_REQUEST_CUSTOM_LANGUAGE => 'en_US',
+            self::HEADER_REQUEST_CUSTOM_REGION => 'en_US',
+        ];
 
+        //Create the requestEndpoint and requestMethod.
+        $requestEndpoint = 'installation/' . $deviceServerId;
+        $requestMethod = 'GET';
+
+        //Create the request which will be send to the server.
+        $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($deviceServerRequest, $clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $deviceServerRequest->setHeader(self::HEADER_REQUEST_CUSTOM_SIGNATURE, $signature);
+
+        //Send the installationRequest and store it in the installationResponse field.
+        $this->deviceServerResponse = $this->httpClient->SendRequest($deviceServerRequest);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($this->deviceServerResponse, $serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
     }
 
     /**
@@ -162,6 +192,14 @@ class DeviceServer
     public function getId()
     {
         return json_decode($this->deviceServerResponse->getBodyString())->{'Response'}[0]->{'Id'};
+    }
+
+    /**
+     * @return String the device server.
+     */
+    public function getDeviceServer()
+    {
+        return json_decode($this->deviceServerResponse->getBodyString())->{'Response'}[0]->{'DeviceServer'};
     }
 
     /**
