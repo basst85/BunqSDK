@@ -27,7 +27,7 @@ Here is a list to see which ones are:
 
 - Setup
 	- [x] Installation
-	- [ ] InstallationServerPublicKey
+	- [x] InstallationServerPublicKey
 	- [ ] Device
 	- [x] DeviceServer
 	- [ ] PermittedIp
