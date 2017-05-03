@@ -33,7 +33,7 @@ Here is a list to see which ones are:
 	- [ ] PermittedIp
 	- [ ] UserCredentialPasswordIp
 	- [ ] Session
-	- [x] SessionServer (POST only)
+	- [x] SessionServer
 - Payments
     - [ ] Payment
     - [ ] PaymentBatch
