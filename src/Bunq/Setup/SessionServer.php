@@ -50,17 +50,14 @@ class SessionServer
     private $headers = [];
 
     /**
-     * @var String the client private key. Used for signing requests.
+     * The keys used for signing and verification.
      */
     private $clientPrivateKey;
-
-    /**
-     * @var String the server public key. Used for verifying requests.
-     */
+    private $clientPublicKey;
     private $serverPublicKey;
 
     /**
-     * @var Strintg the token for the current installation. Used for creating the session.
+     * @var String the token for the current installation. Used for creating the session.
      */
     private $installationToken;
 
@@ -98,6 +95,22 @@ class SessionServer
     {
         $this->secret = $secret;
         $this->httpClient = $httpClient ?: new BunqClient();
+    }
+
+    public function createInstallation()
+    {
+        //Generate a keypair.
+        $keyPair = createKeyPair();
+        $this->clientPublicKey = $keyPair->publicKey;
+        $this->clientPrivateKey = $keyPair->privateKey;
+
+        //Create a new installation.
+        $this->installation = new Installation($this->clientPublicKey, $this->httpClient);
+        $this->installation->post();
+
+        //Store the installation data.
+        $this->serverPublicKey = $this->installation->getServerPublicKey()->{'server_public_key'};
+        $this->installationToken = $this->installation->getToken()->{'token'};
     }
 
     /**
