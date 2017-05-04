@@ -7,16 +7,21 @@ include_once('Client/BunqRequest.php');
 include_once('Client/BunqResponse.php');
 include_once('Exceptions/BunqObjectException.php');
 include_once('Exceptions/BunqVerificationException.php');
+include_once('Setup/Installation.php');
+include_once('Setup/DeviceServer.php');
 
 use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
 use Bunq\Client\BunqResponse;
 use Bunq\Exceptions\BunqObjectException;
 use Bunq\Exceptions\BunqVerificationException;
+use Bunq\Setup\Installation;
+use Bunq\Setup\DeviceServer;
 
 /**
  * Class SessionServer
  * Class for the session-server endpoint.
+ * The session created here will be used in future API-calls.
  * @package Bunq\Setup
  */
 class SessionServer
@@ -40,7 +45,32 @@ class SessionServer
     private $httpClient;
 
     /**
-     * @var String the bunq api-key.
+     * @var array the headers for sending the requests.
+     */
+    private $headers = [];
+
+    /**
+     * @var String the client private key. Used for signing requests.
+     */
+    private $clientPrivateKey;
+
+    /**
+     * @var String the server public key. Used for verifying requests.
+     */
+    private $serverPublicKey;
+
+    /**
+     * @var Strintg the token for the current installation. Used for creating the session.
+     */
+    private $installationToken;
+
+    /**
+     * @var String the token for the current session. Used for future requests.
+     */
+    private $sessionToken;
+
+    /**
+     * @var String the bunq api-key. Used for autorisation.
      */
     private $secret;
 
@@ -64,22 +94,17 @@ class SessionServer
      * Posts a SessionServerRequest to the server.
      * Saves the server response in the sessionServerResponse field.
      *
-     * @param $clientPrivateKey String The client private key used for signing the request.
-     * @param $installationToken String The installation token from the installation request.
-     * @param $serverPublicKey String The server public key used for verification.
-     * @param $customRequestHeaders null|array the custom headers for the request.
-     * if $customRequestHeaders is null, the default headers will be used.
-     *
      * @throws BunqObjectException thrown if the required attributes are missing.
      * @throws BunqVerificationException thrown if the response verification fails.
      */
-    public function post($clientPrivateKey, $installationToken, $serverPublicKey, $customRequestHeaders = null)
+
+    public function post()
     {
         //Create the requestHeaders.
-        $requestHeaders = $customRequestHeaders ?: [
+        $requestHeaders = $this->headers ?: [
             self::HEADER_REQUEST_CACHE_CONTROL => 'no-cache',
             self::HEADER_REQUEST_USER_AGENT => 'SandboxPublicApi:DefaultUser',
-            self::HEADER_REQUEST_CUSTOM_AUTHENTICATION => $installationToken,
+            self::HEADER_REQUEST_CUSTOM_AUTHENTICATION => $this->installationToken,
             self::HEADER_REQUEST_CUSTOM_REQUEST_ID => $this->createUuid(),
             self::HEADER_REQUEST_CUSTOM_GEOLOCATION => '0 0 0 0 000',
             self::HEADER_REQUEST_CUSTOM_LANGUAGE => 'en_US',
@@ -103,7 +128,7 @@ class SessionServer
         $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
 
         //Sign the request with the installation private key.
-        $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $clientPrivateKey);
+        $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $this->clientPrivateKey);
 
         //Add the request signature to the headers.
         $sessionServerRequest->setHeader(self::HEADER_REQUEST_CUSTOM_SIGNATURE, $signature);
@@ -112,7 +137,7 @@ class SessionServer
         $this->sessionServerResponse = $this->httpClient->SendRequest($sessionServerRequest);
 
         //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($this->sessionServerResponse, $serverPublicKey)) {
+        if(!$this->httpClient->verifyResponseSignature($this->sessionServerResponse, $this->serverPublicKey)) {
             throw new BunqVerificationException('Response verification failed.');
         }
     }
@@ -194,4 +219,70 @@ class SessionServer
     {
         return $this->sessionServerResponse;
     }
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+    }
+
+    /**
+     * @return String
+     */
+    public function getClientPrivateKey()
+    {
+        return $this->clientPrivateKey;
+    }
+
+    /**
+     * @param String $clientPrivateKey
+     */
+    public function setClientPrivateKey($clientPrivateKey)
+    {
+        $this->clientPrivateKey = $clientPrivateKey;
+    }
+
+    /**
+     * @return String
+     */
+    public function getServerPublicKey()
+    {
+        return $this->serverPublicKey;
+    }
+
+    /**
+     * @param String $serverPublicKey
+     */
+    public function setServerPublicKey($serverPublicKey)
+    {
+        $this->serverPublicKey = $serverPublicKey;
+    }
+
+    /**
+     * @return String
+     */
+    public function getSessionToken()
+    {
+        return $this->sessionToken;
+    }
+
+    /**
+     * @param String $sessionToken
+     */
+    public function setSessionToken($sessionToken)
+    {
+        $this->sessionToken = $sessionToken;
+    }
+
+
 }
