@@ -70,6 +70,16 @@ class SessionServer
     private $sessionToken;
 
     /**
+     * @var Installation the current installation.
+     */
+    private $installation;
+
+    /**
+     * @var DeviceServer the current deviceServer.
+     */
+    private $deviceServer;
+
+    /**
      * @var String the bunq api-key. Used for autorisation.
      */
     private $secret;
@@ -84,7 +94,7 @@ class SessionServer
      * @param $secret String the bunq api-key.
      * @param $httpClient null|BunqClient the client used to sens requests.
      */
-    public function __construct($secret, $httpClient = null)
+    public function __construct($secret, BunqClient $httpClient = null)
     {
         $this->secret = $secret;
         $this->httpClient = $httpClient ?: new BunqClient();
@@ -97,7 +107,6 @@ class SessionServer
      * @throws BunqObjectException thrown if the required attributes are missing.
      * @throws BunqVerificationException thrown if the response verification fails.
      */
-
     public function post()
     {
         //Create the requestHeaders.
