@@ -106,11 +106,18 @@ class SessionServer
 
         //Create a new installation.
         $this->installation = new Installation($this->clientPublicKey, $this->httpClient);
-        $this->installation->post();
+        $this->installation->post($this->headers);
 
         //Store the installation data.
         $this->serverPublicKey = $this->installation->getServerPublicKey()->{'server_public_key'};
         $this->installationToken = $this->installation->getToken()->{'token'};
+    }
+
+    public function createDeviceServer($description, $permittedIps)
+    {
+        //Create a new device server.
+        $this->deviceServer = new DeviceServer($description, $this->secret, $permittedIps, $this->httpClient);
+        $this->deviceServer->post($this->clientPrivateKey, $this->installationToken, $this->serverPublicKey, $this->headers);
     }
 
     /**
