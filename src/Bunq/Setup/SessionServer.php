@@ -293,5 +293,35 @@ class SessionServer
         $this->sessionToken = $sessionToken;
     }
 
+    /**
+     * @return \Bunq\Setup\Installation
+     */
+    public function getInstallation()
+    {
+        return $this->installation;
+    }
 
+    /**
+     * @param \Bunq\Setup\Installation $installation
+     */
+    public function setInstallation($installation)
+    {
+        $this->installation = $installation;
+    }
+
+    /**
+     * @return \Bunq\Setup\DeviceServer
+     */
+    public function getDeviceServer()
+    {
+        return $this->deviceServer;
+    }
+
+    /**
+     * @param \Bunq\Setup\DeviceServer $deviceServer
+     */
+    public function setDeviceServer($deviceServer)
+    {
+        $this->deviceServer = $deviceServer;
+    }
 }
