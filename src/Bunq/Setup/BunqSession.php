@@ -221,7 +221,7 @@ class BunqSession
         $requestMethod = 'DELETE';
         $requestHeaders = $this->getRequestHeaders();
 
-        //Create the POST request.
+        //Create the DELETE request.
         $request = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders);
 
         //Sign the request with the installation private key.
@@ -239,9 +239,39 @@ class BunqSession
         }
     }
 
+    /**
+     * Sends a PUT request to the server using the given BunqObject.
+     *
+     * @param BunqObject $object
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
     public function put(BunqObject $object)
     {
+        //Create the data for the needed BunqRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'PUT';
+        $requestHeaders = $this->getRequestHeaders();
+        $requestBody = json_encode($object->getRequestBodyArray());
 
+        //Create the PUT request.
+        $request = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($request, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $request->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Send the deviceServerRequest.
+        $response = $this->httpClient->SendRequest($request);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
+
+        //Extract and store the returned data.
+        $object->serializeData($response);
     }
 
     public function getRequestHeaders()
