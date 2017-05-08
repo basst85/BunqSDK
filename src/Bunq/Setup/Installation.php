@@ -30,5 +30,8 @@ class Installation extends BunqObject
 
     private $serverPublicKey;
 
-
+    public function getRequestBodyArray()
+    {
+        return ['client_public_key' => $this->clientPublicKey];
+    }
 }
