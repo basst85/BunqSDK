@@ -45,7 +45,7 @@ class BunqSession
     /**
      * @var array the requestHeaders for this session.
      */
-    private $headers;
+    private $defaultHeaders;
 
     /**
      * @var BunqClient the client used to send request to the server.
@@ -81,7 +81,7 @@ class BunqSession
         //Create the data needed for the BunqRequest.
         $requestEndpoint = $installation->getEndpoint();
         $requestMethod = 'POST';
-        $requestHeaders = $this->headers;
+        $requestHeaders = $this->getRequestHeaders();
         $requestBody = json_encode($installation->getRequestBodyArray());
 
         //Create and execute the installation request.
@@ -109,7 +109,7 @@ class BunqSession
         //Create the data needed for the BunqRequest.
         $requestEndpoint = $object->getEndpoint();
         $requestMethod = 'POST';
-        $requestHeaders = $this->headers;
+        $requestHeaders = $this->getRequestHeaders();
         $requestBody = json_encode($object->getRequestBodyArray());
 
         //Create the deviceServer request.
@@ -147,7 +147,7 @@ class BunqSession
         //Create the data needed for the BungRequest.
         $requestEndpoint = $object->getEndpoint();
         $requestMethod = 'POST';
-        $requestHeaders = $this->headers;
+        $requestHeaders = $this->getRequestHeaders();
         $requestBody = json_encode($object->getRequestBodyArray());
 
         //Create the sessionServerRequest.
@@ -193,4 +193,46 @@ class BunqSession
     {
 
     }
+
+    public function getRequestHeaders()
+    {
+        //If there is no installation, the installationHeaders are needed.
+        //That means no tokens.
+        if(is_null($this->installation)) {
+            $requestHeaders = $this->defaultHeaders;
+            $requestHeaders['X-Bunq-Client-Request-Id'] = $this->createUuid();
+        }
+        //If there is no deviceServer, or sessionServer the deviceServerHeaders are needed.
+        //That means the installationToken is needed.
+        elseif(is_null($this->deviceServer) || is_null($this->sessionServer)) {
+            $requestHeaders = $this->defaultHeaders;
+            $requestHeaders['X-Bunq-Client-Request-Id'] = $this->createUuid();
+            $requestHeaders['X-Bunq-Client-Authentication'] = $this->installation->getToken();
+
+        }
+        //Else: Normal request headers are needed.
+        //That means the sessionToken is needed.
+        else {
+            $requestHeaders = $this->defaultHeaders;
+            $requestHeaders['X-Bunq-Client-Request-Id'] = $this->createUuid();
+            $requestHeaders['X-Bunq-Client-Authentication'] = $this->sessionServer->getToken()->{'token'};
+        }
+
+        return $requestHeaders;
+    }
+
+
+    /**
+     * Create a new unique identifier.
+     *
+     * @return string The unique identifier.
+     */
+    private function createUuid()
+    {
+        $randomInput = openssl_random_pseudo_bytes(16);
+        $randomInput[6] = chr(ord($randomInput[6]) & 0x0f | 0x40);
+        $randomInput[8] = chr(ord($randomInput[8]) & 0x3f | 0x80);
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($randomInput), 4));
+    }
+
 }
