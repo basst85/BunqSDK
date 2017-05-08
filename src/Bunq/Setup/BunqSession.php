@@ -139,7 +139,7 @@ class BunqSession
     /**
      * Creates a sessionServer.
      *
-     * @throws BunqObjectException thrown if the required attributes are missing.
+     * @param BunqObject $object the sessionServer object.
      * @throws BunqVerificationException thrown if the response verification fails.
      */
     public function createSessionServer(BunqObject $object)
