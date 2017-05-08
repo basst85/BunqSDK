@@ -20,7 +20,7 @@ class Installation extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint = "installation";
+    private $endpoint = 'installation';
     private $clientPublicKey;
 
     /**
@@ -193,5 +193,5 @@ class Installation extends BunqObject
         $this->serverPublicKey = $serverPublicKey;
     }
 
-    
+
 }
