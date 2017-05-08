@@ -64,6 +64,11 @@ class BunqSession
     private $deviceServer;
 
     /**
+     * @var SessionServer the current sessionServer.
+     */
+    private $sessionServer;
+
+    /**
      * Creates an installation on the server.
      * Stores the installation data in the given object.
      * Extracts the needed data for the session.
@@ -139,7 +144,34 @@ class BunqSession
      */
     public function createSessionServer(BunqObject $object)
     {
-        //TODO create a session server.
+        //Create the data needed for the BungRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'POST';
+        $requestHeaders = $this->headers;
+        $requestBody = json_encode($object->getRequestBodyArray());
+
+        //Create the sessionServerRequest.
+        $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $sessionServerRequest->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Send the deviceServerRequest.
+        $sessionServerResponse = $this->httpClient->SendRequest($sessionServerRequest);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($sessionServerResponse, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
+
+        //Extract and store the returned data.
+        $object->serializeData($sessionServerResponse);
+
+        //Store the device server for future use.
+        $this->sessionServer = $object;
     }
 
     public function post(BunqObject $object)
