@@ -33,10 +33,24 @@ class DeviceServer extends BunqObject
 
     /**
      * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
      */
     public function getRequestBodyArray()
     {
-        // TODO: Implement getRequestBodyArray() method.
+        if(is_null($this->description) ||
+            is_null($this->secret)) {
+            throw new BunqObjectException('Missing required attributes.');
+        }
+        else {
+            $bodyArray = [
+                'description' => $this->description,
+                'secret' => $this->secret];
+            if(!is_null($this->permittedIps)) {
+                $bodyArray['permitted_ips'] = $this->permittedIps;
+            }
+        }
+
+        return $bodyArray;
     }
 
     /**
