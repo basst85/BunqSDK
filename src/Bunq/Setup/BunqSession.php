@@ -185,9 +185,39 @@ class BunqSession
         $this->sessionToken = $this->sessionServer->getToken()->{'token'};
     }
 
+    /**
+     * Sends a POST request to the server using the given BunqObject.
+     *
+     * @param BunqObject $object
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
     public function post(BunqObject $object)
     {
+        //Create the data for the needed BunqRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'POST';
+        $requestHeaders = $this->getRequestHeaders();
+        $requestBody = json_encode($object->getRequestBodyArray());
 
+        //Create the POST request.
+        $request = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($request, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $request->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Send the deviceServerRequest.
+        $response = $this->httpClient->SendRequest($request);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
+
+        //Extract and store the returned data.
+        $object->serializeData($response);
     }
 
     /**
@@ -198,7 +228,7 @@ class BunqSession
      */
     public function get(BunqObject $object)
     {
-        //Create the data for the needed bunqRequest.
+        //Create the data for the needed BunqRequest.
         $requestEndpoint = $object->getEndpoint();
         $requestMethod = 'GET';
         $requestHeaders = $this->getRequestHeaders();
