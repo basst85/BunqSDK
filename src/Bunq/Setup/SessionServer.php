@@ -126,7 +126,7 @@ class SessionServer extends BunqObject
      */
     public function getEndpoint()
     {
-        // TODO: Implement getEndpoint() method.
+        return $this->endpoint;
     }
 
     /**
@@ -134,6 +134,6 @@ class SessionServer extends BunqObject
      */
     public function setEndpoint($endpoint)
     {
-        // TODO: Implement setEndpoint() method.
+        $this->endpoint = $endpoint;
     }
 }
