@@ -31,11 +31,18 @@ class Installation extends BunqObject
 
     private $serverPublicKey;
 
+    /**
+     * @return array the request body as an array.
+     */
     public function getRequestBodyArray()
     {
         return ['client_public_key' => $this->clientPublicKey];
     }
 
+    /**
+     * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
+     */
     public function serializeData(BunqResponse $response)
     {
         $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
