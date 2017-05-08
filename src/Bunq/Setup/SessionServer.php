@@ -31,6 +31,12 @@ use Bunq\Setup\DeviceServer;
 class SessionServer
 {
     /**
+     * The client keys for signing requests.
+     */
+    private $clientPublicKey;
+    private $clientPrivateKey;
+
+    /**
      * @var array the requestHeaders for this session.
      */
     private $headers;
@@ -97,6 +103,8 @@ class SessionServer
 
         //Store the device server for future use.
         $this->deviceServer = $object;
+
+        //TODO: Signing and verifing.
     }
 
     public function createSession()
