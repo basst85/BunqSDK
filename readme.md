@@ -23,13 +23,15 @@ The API calls are made using the objects corresponding with the calls from doc.b
 The correct way to use these objects to make calls is:
     
     //Create a new object.
-    $payment = new Payment($amountValue, $amountCurrency, $CounterpartyAliasType, $counterpartyAliasValue, $description);
+    $payment = new Payment($amountValue, $amountCurrency, $CounterpartyAliasType, $counterpartyAliasValue, $description, $endpoint);
     
     //Make the post call.
     $session->post($payment);
     
     //Extract the needed date from the object.
     $paymentId = $payment->getId();
+    
+This way you'll only need to specify the request attributes and the endpoint, and all the data will be easy to access from the object.
 
 
 ## status
