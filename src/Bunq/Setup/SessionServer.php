@@ -35,8 +35,42 @@ class SessionServer
      */
     private $headers;
 
-    public function createInstallation()
+    /**
+     * @var BunqClient the client used to send request to the server.
+     */
+    private $httpClient;
+
+    /**
+     * @var Installation the current installation.
+     * Contains the serverPublicKey
+     */
+    private $installation;
+
+    /**
+     * Creates an installation on the server.
+     * Stores the installation data in the given object.
+     * Extracts the needed data for the session
+     *
+     * @param BunqObject $object the installation object.
+     */
+    public function createInstallation(BunqObject $object)
     {
+        //Create the data needed for the BunqRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'POST';
+        $requestHeaders = $this->headers;
+        $requestBody = json_encode($object->getRequestBodyArray());
+
+        //Create and execute the installation request.
+        $installationRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        $installationResponse = $this->httpClient->SendRequest($installationRequest);
+
+        //Extract and store the returned data.
+        $object->serializeData($installationResponse);
+
+        //Store the installation for future use.
+        $this->installation = $object;
 
     }
 
