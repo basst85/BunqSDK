@@ -32,7 +32,6 @@ class BunqSession
     /**
      * The keys for signing requests.
      */
-    private $clientPublicKey;
     private $clientPrivateKey;
     private $serverPublicKey;
 
@@ -68,21 +67,19 @@ class BunqSession
      */
     private $sessionServer;
 
+
     /**
      * Creates an installation on the server.
      * Stores the installation data in the given object.
      * Extracts the needed data for the session.
      */
-    public function createInstallation()
+    public function createInstallation(BunqObject $object)
     {
-        //Create the installationObject.
-        $installation = new Installation('installation', $this->clientPublicKey);
-
         //Create the data needed for the BunqRequest.
-        $requestEndpoint = $installation->getEndpoint();
+        $requestEndpoint = $object->getEndpoint();
         $requestMethod = 'POST';
         $requestHeaders = $this->getRequestHeaders();
-        $requestBody = json_encode($installation->getRequestBodyArray());
+        $requestBody = json_encode($object->getRequestBodyArray());
 
         //Create and execute the installation request.
         $installationRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
@@ -90,11 +87,11 @@ class BunqSession
         $installationResponse = $this->httpClient->SendRequest($installationRequest);
 
         //Extract and store the returned data.
-        $installation->serializeData($installationResponse);
+        $object->serializeData($installationResponse);
 
         //Store the installation for future use.
-        $this->installation = $installation;
-        $this->serverPublicKey = $installation->getServerPublicKey();
+        $this->installation = $object;
+        $this->serverPublicKey = $object->getServerPublicKey();
 
     }
 
@@ -144,7 +141,7 @@ class BunqSession
      */
     public function createSessionServer(BunqObject $object)
     {
-        //Create the data needed for the BungRequest.
+        //Create the data needed for the BunqRequest.
         $requestEndpoint = $object->getEndpoint();
         $requestMethod = 'POST';
         $requestHeaders = $this->getRequestHeaders();
@@ -172,6 +169,8 @@ class BunqSession
 
         //Store the device server for future use.
         $this->sessionServer = $object;
+        $this->sessionId = $this->sessionServer->getId()->{'id'};
+        $this->sessionToken = $this->sessionServer->getToken()->{'token'};
     }
 
     public function post(BunqObject $object)
