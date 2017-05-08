@@ -31,4 +31,9 @@ abstract class BunqObject
      * @return mixed
      */
     public abstract function getEndpoint();
+
+    /**
+     * @param mixed $endpoint
+     */
+    public abstract function setEndpoint($endpoint);
 }
