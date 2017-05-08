@@ -62,9 +62,14 @@ class Installation extends BunqObject
      */
     public function serializeData(BunqResponse $response, $method)
     {
-        $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
-        $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
-        $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'};
+        if($method === 'POST') {
+            $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
+            $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
+            $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'};
+        }
+        elseif($method === 'GET') {
+            $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
+        }
     }
 
     /**
