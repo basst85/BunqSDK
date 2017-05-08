@@ -100,10 +100,16 @@ class SessionServer extends BunqObject
 
     /**
      * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
      */
     public function getRequestBodyArray()
     {
-        // TODO: Implement getRequestBodyArray() method.
+        if(is_null($this->secret)) {
+            throw new BunqObjectException('Missing required attributes.');
+        }
+        else {
+            return ['secret' => $this->secret];
+        }
     }
 
     /**
