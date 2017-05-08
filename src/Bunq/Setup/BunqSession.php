@@ -190,9 +190,38 @@ class BunqSession
 
     }
 
+    /**
+     * Sends a GET request to the server using the given BunqObject.
+     *
+     * @param BunqObject $object
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
     public function get(BunqObject $object)
     {
+        //Create the data for the needed bunqRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'GET';
+        $requestHeaders = $this->getRequestHeaders();
 
+        //Create a new GET request.
+        $request = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($request, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $request->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Send the GET request.
+        $response = $this->httpClient->SendRequest($request);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
+
+        //Extract and store the returned data.
+        $object->serializeData($response);
     }
 
     public function delete(BunqObject $object)
