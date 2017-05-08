@@ -40,6 +40,11 @@ class SessionServer
 
     }
 
+    public function createSession()
+    {
+
+    }
+
     public function post(BunqObject $object)
     {
 
