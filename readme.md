@@ -24,10 +24,8 @@ The correct way to use these objects to make calls is:
     
     //Create a new object.
     $payment = new Payment($amountValue, $amountCurrency, $CounterpartyAliasType, $counterpartyAliasValue, $description, $endpoint);
-    
     //Make the post call.
     $session->post($payment);
-    
     //Extract the needed data from the object.
     $paymentId = $payment->getId();
     
@@ -129,3 +127,32 @@ Here is a list to see which ones are:
     - [ ] ExportAnnualOverview
     - [ ] ExportAnnualOverviewContent
     
+## Examples
+
+Here are some more examples.
+
+Posting a new installation:
+
+    //Create the installation object with the client public key and the correct endpoint.
+    $installation = new Installation($ClientPublicKey, 'installation');
+    //Execute the Post installationRequest.
+    $session->createInstallation($installation);
+
+Getting the id from a user:
+    
+    //Create the user object with the correct endpoint.
+    $user = new User('user');
+    //Execute the GET request.
+    $session->get($user);
+    //Extract the id.
+    $userId = $user->getUserCompany()->{'id'};
+    
+Getting the balance from a monetary account:
+
+    //Create the monetaryAccount object with the correct endpoint.
+    $monetaryAccount = new MonetaryAccount('user/' . $userId . 'monetary-account');
+    //Execute the GET request.
+    $session->get($monetaryAccount);
+    //Extract the balance.
+    $monetaryAccount->getMonetaryAccountBank()->{'balance'};
+  
