@@ -2,6 +2,8 @@
 
 namespace Bunq;
 
+use Bunq\Client\BunqResponse;
+
 /**
  * Class BunqObject
  * Abstract class for API endpoint objects.
@@ -16,6 +18,7 @@ abstract class BunqObject
 
     /**
      * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
      */
-    public abstract function serializeData();
+    public abstract function serializeData(BunqResponse $response);
 }
