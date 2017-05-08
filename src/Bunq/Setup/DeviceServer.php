@@ -21,6 +21,7 @@ class DeviceServer extends BunqObject
     /**
      * Request attributes:
      */
+    private $endpoint = 'device-server';
     private $description;
     private $secret;
     private $permittedIps;
@@ -67,7 +68,7 @@ class DeviceServer extends BunqObject
      */
     public function getEndpoint()
     {
-        // TODO: Implement getEndpoint() method.
+        Return $this->endpoint;
     }
 
     /**
@@ -75,6 +76,70 @@ class DeviceServer extends BunqObject
      */
     public function setEndpoint($endpoint)
     {
-        // TODO: Implement setEndpoint() method.
+        $this->endpoint = $endpoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
+    /**
+     * @param mixed $secret
+     */
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPermittedIps()
+    {
+        return $this->permittedIps;
+    }
+
+    /**
+     * @param mixed $permittedIps
+     */
+    public function setPermittedIps($permittedIps)
+    {
+        $this->permittedIps = $permittedIps;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
