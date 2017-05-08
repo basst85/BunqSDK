@@ -64,4 +64,134 @@ class Installation extends BunqObject
 
         $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'}->{'server_public_key'};
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEndpoint()
+    {
+        return $this->endpoint;
+    }
+
+    /**
+     * @param mixed $endpoint
+     */
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientPublicKey()
+    {
+        return $this->clientPublicKey;
+    }
+
+    /**
+     * @param mixed $clientPublicKey
+     */
+    public function setClientPublicKey($clientPublicKey)
+    {
+        $this->clientPublicKey = $clientPublicKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenId()
+    {
+        return $this->tokenId;
+    }
+
+    /**
+     * @param mixed $tokenId
+     */
+    public function setTokenId($tokenId)
+    {
+        $this->tokenId = $tokenId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenCreated()
+    {
+        return $this->tokenCreated;
+    }
+
+    /**
+     * @param mixed $tokenCreated
+     */
+    public function setTokenCreated($tokenCreated)
+    {
+        $this->tokenCreated = $tokenCreated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenUpdated()
+    {
+        return $this->tokenUpdated;
+    }
+
+    /**
+     * @param mixed $tokenUpdated
+     */
+    public function setTokenUpdated($tokenUpdated)
+    {
+        $this->tokenUpdated = $tokenUpdated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServerPublicKey()
+    {
+        return $this->serverPublicKey;
+    }
+
+    /**
+     * @param mixed $serverPublicKey
+     */
+    public function setServerPublicKey($serverPublicKey)
+    {
+        $this->serverPublicKey = $serverPublicKey;
+    }
+
+    
 }
