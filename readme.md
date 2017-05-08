@@ -135,7 +135,7 @@ Posting a new installation:
 
     //Create the installation object with the client public key and the correct endpoint.
     $installation = new Installation($ClientPublicKey, 'installation');
-    //Execute the Post installationRequest.
+    //Execute the POST installationRequest.
     $session->createInstallation($installation);
 
 Getting the id from a user:
