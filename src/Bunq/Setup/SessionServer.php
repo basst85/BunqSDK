@@ -2,6 +2,8 @@
 
 namespace Bunq\Setup;
 
+
+include_once('BunqObject.php');
 include_once('Client/BunqClient.php');
 include_once('Client/BunqRequest.php');
 include_once('Client/BunqResponse.php');
@@ -10,6 +12,7 @@ include_once('Exceptions/BunqVerificationException.php');
 include_once('Setup/Installation.php');
 include_once('Setup/DeviceServer.php');
 
+use Bunq\BunqObject;
 use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
 use Bunq\Client\BunqResponse;
@@ -27,5 +30,33 @@ use Bunq\Setup\DeviceServer;
  */
 class SessionServer
 {
+    public function createInstallation()
+    {
 
+    }
+
+    public function createDeviceServer()
+    {
+
+    }
+
+    public function post(BunqObject $object)
+    {
+
+    }
+
+    public function get(BunqObject $object)
+    {
+
+    }
+
+    public function delete(BunqObject $object)
+    {
+
+    }
+
+    public function put(BunqObject $object)
+    {
+
+    }
 }
