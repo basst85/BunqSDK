@@ -43,11 +43,11 @@ Here is a list to see which ones are:
 	- [x] Installation
 	- [ ] InstallationServerPublicKey
 	- [ ] Device
-	- [x] DeviceServer (POST only)
+	- [x] DeviceServer
 	- [ ] PermittedIp
 	- [ ] UserCredentialPasswordIp
 	- [ ] Session
-	- [x] SessionServer (POST only)
+	- [x] SessionServer
 - Payments
     - [ ] Payment
     - [ ] PaymentBatch
