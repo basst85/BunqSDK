@@ -62,7 +62,7 @@ class Installation extends BunqObject
     public function serializeData(BunqResponse $response)
     {
         $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
-        $this->tokenId = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
+        $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
         $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'};
     }
 
@@ -112,54 +112,6 @@ class Installation extends BunqObject
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTokenId()
-    {
-        return $this->tokenId;
-    }
-
-    /**
-     * @param mixed $tokenId
-     */
-    public function setTokenId($tokenId)
-    {
-        $this->tokenId = $tokenId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTokenCreated()
-    {
-        return $this->tokenCreated;
-    }
-
-    /**
-     * @param mixed $tokenCreated
-     */
-    public function setTokenCreated($tokenCreated)
-    {
-        $this->tokenCreated = $tokenCreated;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTokenUpdated()
-    {
-        return $this->tokenUpdated;
-    }
-
-    /**
-     * @param mixed $tokenUpdated
-     */
-    public function setTokenUpdated($tokenUpdated)
-    {
-        $this->tokenUpdated = $tokenUpdated;
     }
 
     /**

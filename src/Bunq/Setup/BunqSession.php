@@ -247,7 +247,7 @@ class BunqSession
         elseif(is_null($this->deviceServer) || is_null($this->sessionServer)) {
             $requestHeaders = $this->defaultHeaders;
             $requestHeaders['X-Bunq-Client-Request-Id'] = $this->createUuid();
-            $requestHeaders['X-Bunq-Client-Authentication'] = $this->installation->getToken();
+            $requestHeaders['X-Bunq-Client-Authentication'] = $this->installation->getToken()->{'token'};
 
         }
         //Else: Normal request headers are needed.
