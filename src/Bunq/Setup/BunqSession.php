@@ -115,31 +115,8 @@ class BunqSession
      */
     public function createDeviceServer(BunqObject $object)
     {
-        //Create the data needed for the BunqRequest.
-        $requestEndpoint = $object->getEndpoint();
-        $requestMethod = 'POST';
-        $requestHeaders = $this->getRequestHeaders();
-        $requestBody = json_encode($object->getRequestBodyArray());
-
-        //Create the deviceServer request.
-        $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
-
-        //Sign the request with the installation private key.
-        $signature = $this->httpClient->getRequestSignature($deviceServerRequest, $this->clientPrivateKey);
-
-        //Add the request signature to the headers.
-        $deviceServerRequest->setHeader('X-Bunq-Client-Signature', $signature);
-
-        //Send the deviceServerRequest.
-        $deviceServerResponse = $this->httpClient->SendRequest($deviceServerRequest);
-
-        //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($deviceServerResponse, $this->serverPublicKey)) {
-            throw new BunqVerificationException('Response verification failed.');
-        }
-
-        //Extract and store the returned data.
-        $object->serializeData($deviceServerResponse);
+        //Use the post method to create a deviceServer.
+        $this->post($object);
 
         //Store the device server for future use.
         $this->deviceServer = $object;
@@ -153,31 +130,8 @@ class BunqSession
      */
     public function createSessionServer(BunqObject $object)
     {
-        //Create the data needed for the BunqRequest.
-        $requestEndpoint = $object->getEndpoint();
-        $requestMethod = 'POST';
-        $requestHeaders = $this->getRequestHeaders();
-        $requestBody = json_encode($object->getRequestBodyArray());
-
-        //Create the sessionServerRequest.
-        $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
-
-        //Sign the request with the installation private key.
-        $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $this->clientPrivateKey);
-
-        //Add the request signature to the headers.
-        $sessionServerRequest->setHeader('X-Bunq-Client-Signature', $signature);
-
-        //Send the deviceServerRequest.
-        $sessionServerResponse = $this->httpClient->SendRequest($sessionServerRequest);
-
-        //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($sessionServerResponse, $this->serverPublicKey)) {
-            throw new BunqVerificationException('Response verification failed.');
-        }
-
-        //Extract and store the returned data.
-        $object->serializeData($sessionServerResponse);
+        //Use the post method to create a sessionServer.
+        $this->post($object);
 
         //Store the device server for future use.
         $this->sessionServer = $object;
