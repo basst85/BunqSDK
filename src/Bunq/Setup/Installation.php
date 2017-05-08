@@ -3,9 +3,12 @@
 namespace Bunq\Setup;
 
 include_once('BunqObject.php');
+include_once('Client/BunqResponse.php');
+include_once('Exceptions/BunqObjectException.php');
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
+use Bunq\Exceptions\BunqObjectException;
 
 /**
  * Class Installation
@@ -34,10 +37,16 @@ class Installation extends BunqObject
 
     /**
      * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
      */
     public function getRequestBodyArray()
     {
-        return ['client_public_key' => $this->clientPublicKey];
+        if(is_null($this->clientPublicKey)) {
+            throw new BunqObjectException('Missing required attributes.');
+        }
+        else {
+            return ['client_public_key' => $this->clientPublicKey];
+        }
     }
 
     /**
