@@ -41,12 +41,6 @@ class BunqSession
      */
     private $sessionId;
     private $sessionToken;
-    private $sessionUserCompany;
-
-    /**
-     * @var String the API key provided by bunq.
-     */
-    private $secret;
 
     /**
      * @var array the requestHeaders for this session.
@@ -145,7 +139,7 @@ class BunqSession
      */
     public function createSessionServer(BunqObject $object)
     {
-
+        //TODO create a session server.
     }
 
     public function post(BunqObject $object)
