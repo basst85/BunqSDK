@@ -28,7 +28,7 @@ The correct way to use these objects to make calls is:
     //Make the post call.
     $session->post($payment);
     
-    //Extract the needed date from the object.
+    //Extract the needed data from the object.
     $paymentId = $payment->getId();
     
 This way you'll only need to specify the request attributes and the endpoint, and all the data will be easy to access from the object.
