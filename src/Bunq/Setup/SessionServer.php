@@ -30,10 +30,16 @@ use Bunq\Exceptions\BunqVerificationException;
 class SessionServer
 {
     /**
-     * The client keys for signing requests.
+     * The keys for signing requests.
      */
     private $clientPublicKey;
     private $clientPrivateKey;
+    private $serverPublicKey;
+
+    /**
+     * @var String the API key provided by bunq.
+     */
+    private $secret;
 
     /**
      * @var array the requestHeaders for this session.
@@ -82,6 +88,7 @@ class SessionServer
 
         //Store the installation for future use.
         $this->installation = $installation;
+        $this->serverPublicKey = $installation->getServerPublicKey();
 
     }
 
@@ -93,18 +100,28 @@ class SessionServer
         $requestHeaders = $this->headers;
         $requestBody = json_encode($object->getRequestBodyArray());
 
-        //Create and execute the deviceServer request.
+        //Create the deviceServer request.
         $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
 
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($deviceServerRequest, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $deviceServerRequest->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Send the deviceServerRequest.
         $deviceServerResponse = $this->httpClient->SendRequest($deviceServerRequest);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($deviceServerResponse, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
 
         //Extract and store the returned data.
         $object->serializeData($deviceServerResponse);
 
         //Store the device server for future use.
         $this->deviceServer = $object;
-
-        //TODO: Signing and verifing.
     }
 
     public function createSession()
