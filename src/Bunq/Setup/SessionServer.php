@@ -60,9 +60,11 @@ class SessionServer extends BunqObject
      */
     public function serializeData(BunqResponse $response, $method)
     {
-        $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
-        $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
-        $this->userCompany = json_decode($response->getBodyString())->{'Response'}[2]->{'UserCompany'};
+        if($method === 'POST') {
+            $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
+            $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
+            $this->userCompany = json_decode($response->getBodyString())->{'Response'}[2]->{'UserCompany'};
+        }
     }
 
     /**
