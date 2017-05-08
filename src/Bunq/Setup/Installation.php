@@ -27,12 +27,7 @@ class Installation extends BunqObject
      * Response attributes:
      */
     private $id;
-
-    private $tokenId;
-    private $tokenCreated;
-    private $tokenUpdated;
     private $token;
-
     private $serverPublicKey;
 
     /**
@@ -67,13 +62,8 @@ class Installation extends BunqObject
     public function serializeData(BunqResponse $response)
     {
         $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
-
-        $this->tokenId = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'}->{'id'};
-        $this->tokenCreated = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'}->{'created'};
-        $this->tokenUpdated = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'}->{'updated'};
-        $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'}->{'token'};
-
-        $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'}->{'server_public_key'};
+        $this->tokenId = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
+        $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[2]->{'ServerPublicKey'};
     }
 
     /**

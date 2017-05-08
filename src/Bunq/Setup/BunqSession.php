@@ -103,7 +103,7 @@ class BunqSession
 
         //Store the installation for future use.
         $this->installation = $object;
-        $this->serverPublicKey = $object->getServerPublicKey();
+        $this->serverPublicKey = $this->installation->getServerPublicKey()->{'server_public_key'};
 
     }
 
