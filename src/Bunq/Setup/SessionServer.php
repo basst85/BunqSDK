@@ -29,6 +29,17 @@ class SessionServer extends BunqObject
     private $userCompany;
 
     /**
+     * SessionServer constructor.
+     * @param $secret
+     * @param $endpoint
+     */
+    public function __construct($secret, $endpoint)
+    {
+        $this->secret = $secret;
+        $this->endpoint = $endpoint;
+    }
+
+    /**
      * @return array the request body as an array.
      * @throws BunqObjectException thrown if the required attributes are missing.
      */

@@ -31,6 +31,13 @@ class DeviceServer extends BunqObject
      */
     private $id;
 
+    public function __construct($description, $secret, $permittedIps, $endpoint)
+    {
+        $this->description = $description;
+        $this->secret = $secret;
+        $this->permittedIps = $permittedIps;
+        $this->endpoint = $endpoint;
+    }
 
     /**
      * @return array the request body as an array.
