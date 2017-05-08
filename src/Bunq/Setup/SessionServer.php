@@ -13,6 +13,89 @@ use Bunq\Exceptions\BunqObjectException;
 
 class SessionServer extends BunqObject
 {
+    /**
+     * Request attributes:
+     */
+    private $secret;
+
+    /**
+     * Response attributes:
+     */
+    private $id;
+
+    private $tokenId;
+    private $token;
+
+    private $userCompanyId;
+    private $userCompanyCreated;
+    private $userCompanyUpdated;
+    private $userCompanyPublicUuid;
+    private $userCompanyName;
+    private $userCompanyDisplayName;
+    private $userCompanyPublicNickName;
+    private $userCompanyChamberOfCommerceNumber;
+    private $userCompanyTypeOfBusinessEntity;
+    private $userCompanySectorOfIndustry;
+    private $userCompanyCounterBankIban;
+    private $userCompanyVersionTermsOfService;
+    private $userCompanyLanguage;
+    private $userCompanyRegion;
+    private $userCompanyStatus;
+    private $userCompanySubStatus;
+    private $userCompanySessionTimeout;
+
+    private $userCompanyAliasType;
+    private $userCompanyAliasValue;
+    private $userCompanyAliasName;
+
+    private $userCompanyAvatarUuid;
+    private $userCompanyAvatarAnchorUuid;
+    private $userCompanyAvatarImage;
+
+    private $userCompanyAvatarImageAttachmentPublicUuid;
+    private $userCompanyAvatarImageContentType;
+    private $userCompanyAvatarImageHeight;
+    private $userCompanyAvatarImageWidth;
+
+    private $userCompanyAddressMainStreet;
+    private $userCompanyAddressMainHouseNumber;
+    private $userCompanyAddressMainPoBox;
+    private $userCompanyAddressMainPostalCode;
+    private $userCompanyAddressMainCity;
+    private $userCompanyAddressMainCountry;
+
+    private $userCompanyAddressPostalStreet;
+    private $userCompanyAddressPostalHouseNumber;
+    private $userCompanyAddressPostalPoBox;
+    private $userCompanyAddressPostalPostalCode;
+    private $userCompanyAddressPostalCity;
+    private $userCompanyAddressPostalCountry;
+
+    private $userCompanyDirectorAliasUuid;
+    private $userCompanyDirectorAliasPublicNickName;
+    private $userCompanyDirectorAliasDisplayName;
+    private $userCompanyDirectorAliasCountry;
+
+    private $userCompanyDirectorAliasAvatarUuid;
+    private $userCompanyDirectorAliasAvatarAnchorId;
+
+    private $userCompanyDirectorAliasAvatarImageAttachmentPublicUuid;
+    private $userCompanyDirectorAliasAvatarImageContentType;
+    private $userCompanyDirectorAliasAvatarImageHeight;
+    private $userCompanyDirectorAliasAvatarImageWidth;
+
+    private $userCompanyUboName;
+    private $userCompanyUboDateOfBirth;
+    private $userCompanyUboNatiolality;
+
+    private $userCompanyDailyLimitWithoutConformationLoginValue;
+    private $userCompanyDailyLimitWithoutConformationLoginCurrency;
+
+    private $userCompanyNotificationFiltersNotificationDeliveryMethod;
+    private $userCompanyNotificationFiltersNotificationTarget;
+    private $userCompanyNotificationFiltersCategory;
+
+
 
     /**
      * @return array the request body as an array.
