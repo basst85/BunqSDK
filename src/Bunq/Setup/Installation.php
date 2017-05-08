@@ -17,6 +17,7 @@ class Installation extends BunqObject
     /**
      * Request attributes:
      */
+    private $endpoint = "installation";
     private $clientPublicKey;
 
     /**

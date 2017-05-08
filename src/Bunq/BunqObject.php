@@ -12,6 +12,11 @@ use Bunq\Client\BunqResponse;
 abstract class BunqObject
 {
     /**
+     * @var String the endpoint for the API call.
+     */
+    private $endpoint;
+
+    /**
      * @return array the request body as an array.
      */
     public abstract function getRequestBodyArray();
