@@ -77,7 +77,7 @@ Here is a list to see which ones are:
 - IdealPayments
     - [ ] TokenQrRequestIdeal
 - User
-    - [ ] User
+    - [x] User
     - [ ] UserPerson
     - [ ] UserCompany
 - MonetaryAccounts
