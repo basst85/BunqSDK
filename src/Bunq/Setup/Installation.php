@@ -58,8 +58,9 @@ class Installation extends BunqObject
     /**
      * Extracts the response data and stores them in the class fields.
      * @param BunqResponse $response the response returned by the server.
+     * @param $method String the http method used to get the response.
      */
-    public function serializeData(BunqResponse $response)
+    public function serializeData(BunqResponse $response, $method)
     {
         $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
         $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
