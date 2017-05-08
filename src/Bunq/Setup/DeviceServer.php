@@ -18,6 +18,18 @@ use Bunq\Exceptions\BunqObjectException;
  */
 class DeviceServer extends BunqObject
 {
+    /**
+     * Request attributes:
+     */
+    private $description;
+    private $secret;
+    private $permittedIps;
+
+    /**
+     * Response attributes:
+     */
+    private $id;
+
 
     /**
      * @return array the request body as an array.
