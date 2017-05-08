@@ -16,6 +16,7 @@ class SessionServer extends BunqObject
     /**
      * Request attributes:
      */
+    private $endpoint;
     private $secret;
 
     /**
