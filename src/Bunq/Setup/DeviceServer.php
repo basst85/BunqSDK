@@ -30,6 +30,7 @@ class DeviceServer extends BunqObject
      * Response attributes:
      */
     private $id;
+    private $deviceServer;
 
     public function __construct($description, $secret, $permittedIps, $endpoint)
     {
@@ -68,7 +69,12 @@ class DeviceServer extends BunqObject
      */
     public function serializeData(BunqResponse $response, $method)
     {
-        $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
+        if($method === 'POST') {
+            $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
+        }
+        elseif($method === 'GET') {
+            $this->deviceServer = json_decode($response->getBodyString())->{'Response'}[0]->{'DeviceServer'};
+        }
     }
 
     /**
