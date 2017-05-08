@@ -26,4 +26,9 @@ abstract class BunqObject
      * @param BunqResponse $response the response returned by the server.
      */
     public abstract function serializeData(BunqResponse $response);
+
+    /**
+     * @return mixed
+     */
+    public abstract function getEndpoint();
 }
