@@ -37,6 +37,13 @@ class SessionServer
     private $serverPublicKey;
 
     /**
+     * The data for this session.
+     */
+    private $sessionId;
+    private $sessionToken;
+    private $sessionUserCompany;
+
+    /**
      * @var String the API key provided by bunq.
      */
     private $secret;
@@ -92,6 +99,12 @@ class SessionServer
 
     }
 
+    /**
+     * Creates a deviceServer.
+     *
+     * @param BunqObject $object the deviceServerObject.
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
     public function createDeviceServer(BunqObject $object)
     {
         //Create the data needed for the BunqRequest.
@@ -124,9 +137,46 @@ class SessionServer
         $this->deviceServer = $object;
     }
 
-    public function createSession()
+    /**
+     * Creates a sessionServer.
+     *
+     * @throws BunqObjectException thrown if the required attributes are missing.
+     * @throws BunqVerificationException thrown if the response verification fails.
+     */
+    public function createSessionServer()
     {
+        //Check for missing attributes.
+        if(is_null($this->secret)) {
+            throw new BunqObjectException('Missing required attributes.');
+        }
 
+        //Create the data needed.
+        $requestEndpoint = 'session-server';
+        $requestMethod = 'POST';
+        $requestHeaders = $this->headers;
+        $requestBody = json_encode(['secret' => $this->secret]);
+
+        //Create the request which will be send to the server.
+        $sessionServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        //Sign the request with the installation private key.
+        $signature = $this->httpClient->getRequestSignature($sessionServerRequest, $this->clientPrivateKey);
+
+        //Add the request signature to the headers.
+        $sessionServerRequest->setHeader('X-Bunq-Client-Signature', $signature);
+
+        //Execute the sessionServerRequest and store it in the sessionServerResponse field.
+        $sessionServerResponse = $this->httpClient->SendRequest($sessionServerRequest);
+
+        //Verify the response.
+        if(!$this->httpClient->verifyResponseSignature($sessionServerResponse, $this->serverPublicKey)) {
+            throw new BunqVerificationException('Response verification failed.');
+        }
+
+        //Extract and store the returned data.
+        $this->sessionId = json_decode($sessionServerResponse->getBodyString())->{'Response'}[0]->{'Id'};
+        $this->sessionToken = json_decode($sessionServerResponse->getBodyString())->{'Response'}[1]->{'Token'};
+        $this->sessionUserCompany = json_decode($sessionServerResponse->getBodyString())->{'Response'}[2]->{'UserCompany'};
     }
 
     public function post(BunqObject $object)
