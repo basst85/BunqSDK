@@ -2,24 +2,33 @@
 
 namespace Bunq\Setup;
 
-include_once('Client/BunqClient.php');
-include_once('Client/BunqRequest.php');
-include_once('Client/BunqResponse.php');
-include_once('Exceptions/BunqObjectException.php');
-include_once('Exceptions/BunqVerificationException.php');
+include_once('BunqObject.php');
 
-use Bunq\Client\BunqClient;
-use Bunq\Client\BunqRequest;
-use Bunq\Client\BunqResponse;
-use Bunq\Exceptions\BunqObjectException;
-use Bunq\Exceptions\BunqVerificationException;
+use Bunq\BunqObject;
 
 /**
  * Class Installation
  * Class for the installation endpoint.
  * @package Bunq\ApiCalls
  */
-class Installation
+class Installation extends BunqObject
 {
+    /**
+     * Request attributes:
+     */
+    private $clientPublicKey;
+
+    /**
+     * Response attributes:
+     */
+    private $id;
+
+    private $tokenId;
+    private $tokenCreated;
+    private $tokenUpdated;
+    private $token;
+
+    private $serverPublicKey;
+
 
 }
