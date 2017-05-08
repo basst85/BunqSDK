@@ -30,6 +30,11 @@ use Bunq\Setup\DeviceServer;
  */
 class SessionServer
 {
+    /**
+     * @var array the requestHeaders for this session.
+     */
+    private $headers;
+
     public function createInstallation()
     {
 
