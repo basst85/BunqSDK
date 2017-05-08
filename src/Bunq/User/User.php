@@ -4,11 +4,9 @@ namespace Bunq\User;
 
 include_once('BunqObject.php');
 include_once('Client/BunqResponse.php');
-include_once('Exceptions/BunqObjectException.php');
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
-use Bunq\Exceptions\BunqObjectException;
 
 class User extends BunqObject
 {
@@ -21,13 +19,23 @@ class User extends BunqObject
     /**
      * Response attributes:
      */
+    private $userCompany;
+
+    /**
+     * User constructor.
+     * @param $endpoint
+     */
+    public function __construct($endpoint)
+    {
+        $this->endpoint = $endpoint;
+    }
 
     /**
      * @return array the request body as an array.
      */
     public function getRequestBodyArray()
     {
-        // TODO: Implement getRequestBodyArray() method.
+        //There is no request body since this object is only used for getting data.
     }
 
     /**
@@ -37,7 +45,9 @@ class User extends BunqObject
      */
     public function serializeData(BunqResponse $response, $method)
     {
-        // TODO: Implement serializeData() method.
+        if($method === 'GET') {
+            $this->userCompany = json_decode($response->getBodyString())->{'Response'}[0]->{'UserCompany'};
+        }
     }
 
     /**
@@ -54,5 +64,21 @@ class User extends BunqObject
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCompany()
+    {
+        return $this->userCompany;
+    }
+
+    /**
+     * @param mixed $userCompany
+     */
+    public function setUserCompany($userCompany)
+    {
+        $this->userCompany = $userCompany;
     }
 }
