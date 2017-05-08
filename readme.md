@@ -81,7 +81,7 @@ Here is a list to see which ones are:
     - [ ] UserPerson
     - [ ] UserCompany
 - MonetaryAccounts
-    - [ ] MonetaryAccount
+    - [x] MonetaryAccount
     - [ ] MonetaryAccountBank
 - CashRegisters
     - [ ] CashRegister
