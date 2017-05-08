@@ -47,6 +47,11 @@ class SessionServer
     private $installation;
 
     /**
+     * @var DeviceServer the current deviceServer.
+     */
+    private $deviceServer;
+
+    /**
      * Creates an installation on the server.
      * Stores the installation data in the given object.
      * Extracts the needed data for the session
@@ -74,9 +79,24 @@ class SessionServer
 
     }
 
-    public function createDeviceServer()
+    public function createDeviceServer(BunqObject $object)
     {
+        //Create the data needed for the BunqRequest.
+        $requestEndpoint = $object->getEndpoint();
+        $requestMethod = 'POST';
+        $requestHeaders = $this->headers;
+        $requestBody = json_encode($object->getRequestBodyArray());
 
+        //Create and execute the deviceServer request.
+        $deviceServerRequest = new BunqRequest($requestEndpoint, $requestMethod, $requestHeaders, $requestBody);
+
+        $deviceServerResponse = $this->httpClient->SendRequest($deviceServerRequest);
+
+        //Extract and store the returned data.
+        $object->serializeData($deviceServerResponse);
+
+        //Store the device server for future use.
+        $this->deviceServer = $object;
     }
 
     public function createSession()
