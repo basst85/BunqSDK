@@ -67,6 +67,18 @@ class BunqSession
      */
     private $sessionServer;
 
+    /**
+     * BunqSession constructor.
+     * @param $clientPrivateKey
+     * @param $defaultHeaders
+     * @param $httpClient
+     */
+    public function __construct($clientPrivateKey, $defaultHeaders, $httpClient = null)
+    {
+        $this->clientPrivateKey = $clientPrivateKey;
+        $this->defaultHeaders = $defaultHeaders;
+        $this->httpClient = $httpClient ?: new BunqClient();
+    }
 
     /**
      * Creates an installation on the server.
