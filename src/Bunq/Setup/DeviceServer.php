@@ -59,7 +59,7 @@ class DeviceServer extends BunqObject
      */
     public function serializeData(BunqResponse $response)
     {
-        // TODO: Implement serializeData() method.
+        $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'}->{'id'};
     }
 
     /**
