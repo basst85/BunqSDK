@@ -99,7 +99,7 @@ class BunqSession
         $installationResponse = $this->httpClient->SendRequest($installationRequest);
 
         //Extract and store the returned data.
-        $object->serializeData($installationResponse);
+        $object->serializeData($installationResponse, 'POST');
 
         //Store the installation for future use.
         $this->installation = $object;
@@ -171,7 +171,7 @@ class BunqSession
         }
 
         //Extract and store the returned data.
-        $object->serializeData($response);
+        $object->serializeData($response, 'POST');
     }
 
     /**
@@ -205,7 +205,7 @@ class BunqSession
         }
 
         //Extract and store the returned data.
-        $object->serializeData($response);
+        $object->serializeData($response, 'GET');
     }
 
     /**
@@ -271,7 +271,7 @@ class BunqSession
         }
 
         //Extract and store the returned data.
-        $object->serializeData($response);
+        $object->serializeData($response, 'PUT');
     }
 
     public function getRequestHeaders()
