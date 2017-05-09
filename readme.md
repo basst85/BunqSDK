@@ -17,7 +17,9 @@ The first steps in making API calls is creating an Installation, DeviceServer an
 After these API calls it is possible to use the BunqSession to make other API calls. For example:
     
     $session->post($payment);
-    $session->get($monetaryAccount); 
+    $session->get($monetaryAccount);
+    $session->put($monetaryAccountBank);
+    $session->delete($tabItemShop);
     
 The API calls are made using the objects corresponding with the calls from doc.bunq.com, these objects contain the endpoint, the request attributes and the response attributes.
 The correct way to use these objects to make calls is:
