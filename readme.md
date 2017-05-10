@@ -49,16 +49,16 @@ since this is a "Work in progress" project, not all API calls are implemented ye
 Here is a list to see which ones are:
 
 - Setup
-	- [x] Installation
+	- [X] Installation
 	- [ ] InstallationServerPublicKey
 	- [ ] Device
-	- [x] DeviceServer
+	- [X] DeviceServer
 	- [ ] PermittedIp
 	- [ ] UserCredentialPasswordIp
 	- [ ] Session
-	- [x] SessionServer
+	- [X] SessionServer
 - Payments
-    - [ ] Payment
+    - [X] Payment
     - [ ] PaymentBatch
 - Requests
     - [ ] RequestInquiry
@@ -86,11 +86,11 @@ Here is a list to see which ones are:
 - IdealPayments
     - [ ] TokenQrRequestIdeal
 - User
-    - [x] User
+    - [X] User
     - [ ] UserPerson
     - [ ] UserCompany
 - MonetaryAccounts
-    - [x] MonetaryAccount
+    - [X] MonetaryAccount
     - [ ] MonetaryAccountBank
 - CashRegisters
     - [ ] CashRegister
