@@ -2,7 +2,7 @@
   "name": "bunq_SDK",
   "description": "SDK for the bunq API.",
   "license": "Jelle van Hengel",
-  "keywords": ["bunq"],
+  "keywords": ["bunq", "SDK", "API"],
   "authors": [
     {
       "name": "Jelle van Hengel",
