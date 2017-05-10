@@ -145,7 +145,10 @@ Here are some more examples.
 Posting a new installation:
 
     //Create the installation object with the client public key and the correct endpoint.
-    $installation = new Installation($ClientPublicKey, 'installation');
+    $installation = new Installation('installation');
+    
+    //Add the data to the installation object.
+    $installation->setClientPublicKey($clientPublicKey);
     
     //Execute the POST installationRequest.
     $session->createInstallation($installation);
