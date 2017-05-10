@@ -32,11 +32,12 @@ class DeviceServer extends BunqObject
     private $id;
     private $deviceServer;
 
-    public function __construct($description, $secret, $permittedIps, $endpoint)
+    /**
+     * DeviceServer constructor.
+     * @param $endpoint
+     */
+    public function __construct($endpoint)
     {
-        $this->description = $description;
-        $this->secret = $secret;
-        $this->permittedIps = $permittedIps;
         $this->endpoint = $endpoint;
     }
 
@@ -54,6 +55,7 @@ class DeviceServer extends BunqObject
             $bodyArray = [
                 'description' => $this->description,
                 'secret' => $this->secret];
+
             if(!is_null($this->permittedIps)) {
                 $bodyArray['permitted_ips'] = $this->permittedIps;
             }

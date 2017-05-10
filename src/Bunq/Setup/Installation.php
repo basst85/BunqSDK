@@ -33,11 +33,9 @@ class Installation extends BunqObject
     /**
      * Installation constructor.
      * @param $endpoint
-     * @param $clientPublicKey
      */
-    public function __construct($clientPublicKey, $endpoint)
+    public function __construct($endpoint)
     {
-        $this->clientPublicKey = $clientPublicKey;
         $this->endpoint = $endpoint;
     }
 

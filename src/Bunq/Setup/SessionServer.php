@@ -30,12 +30,10 @@ class SessionServer extends BunqObject
 
     /**
      * SessionServer constructor.
-     * @param $secret
      * @param $endpoint
      */
-    public function __construct($secret, $endpoint)
+    public function __construct($endpoint)
     {
-        $this->secret = $secret;
         $this->endpoint = $endpoint;
     }
 
