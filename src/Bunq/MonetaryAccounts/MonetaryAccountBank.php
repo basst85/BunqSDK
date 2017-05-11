@@ -35,4 +35,15 @@ class MonetaryAccountBank extends BunqObject
      */
     private $monetaryAccountBank;
 
+    /**
+     * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
+     * @param $method String the http method used to get the response.
+     */
+    public function serializeData(BunqResponse $response, $method)
+    {
+        //Since the responses for the POST, PUT and GET methods are the same, $method can be ignored.
+        $this->monetaryAccountBank = json_decode($response->getBodyString())->{'Response'}[0]->{'MonetaryAccountBank'};
+    }
+
 }
