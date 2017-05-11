@@ -16,6 +16,11 @@ abstract class BunqObject
      */
     private $endpoint;
 
+    public function __construct($endpoint)
+    {
+        $this->endpoint = $endpoint;
+    }
+
     /**
      * @return array the request body as an array.
      */
@@ -31,10 +36,16 @@ abstract class BunqObject
     /**
      * @return mixed
      */
-    public abstract function getEndpoint();
+    public function getEndpoint()
+    {
+        Return $this->endpoint;
+    }
 
     /**
      * @param mixed $endpoint
      */
-    public abstract function setEndpoint($endpoint);
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
+    }
 }

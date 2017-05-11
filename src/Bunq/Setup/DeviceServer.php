@@ -21,7 +21,6 @@ class DeviceServer extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint = 'device-server';
     private $description;
     private $secret;
     private $permittedIps;
@@ -31,15 +30,6 @@ class DeviceServer extends BunqObject
      */
     private $id;
     private $deviceServer;
-
-    /**
-     * DeviceServer constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -77,22 +67,6 @@ class DeviceServer extends BunqObject
         elseif($method === 'GET') {
             $this->deviceServer = json_decode($response->getBodyString())->{'Response'}[0]->{'DeviceServer'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        Return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**

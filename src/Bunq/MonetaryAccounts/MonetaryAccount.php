@@ -14,21 +14,11 @@ class MonetaryAccount extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint;
 
     /**
      * Response attributes:
      */
     private $monetaryAccountBank;
-
-    /**
-     * MonetaryAccount constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -48,22 +38,6 @@ class MonetaryAccount extends BunqObject
         if($method === 'GET') {
             $this->monetaryAccountBank = json_decode($response->getBodyString())->{'Response'}[0]->{'MonetaryAccountBank'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**

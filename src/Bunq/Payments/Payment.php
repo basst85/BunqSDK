@@ -15,8 +15,6 @@ class Payment extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint;
-
     private $amountValue;
     private $amountCurrency;
     private $counterPartyAliasType;
@@ -30,15 +28,6 @@ class Payment extends BunqObject
      */
     private $id;
     private $payment;
-
-    /**
-     * Payment constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -91,22 +80,6 @@ class Payment extends BunqObject
         if($method === 'GET') {
             $this->payment = json_decode($response->getBodyString())->{'Response'}[0]->{'Payment'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**

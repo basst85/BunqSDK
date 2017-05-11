@@ -14,21 +14,11 @@ class User extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint;
 
     /**
      * Response attributes:
      */
     private $userCompany;
-
-    /**
-     * User constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -48,22 +38,6 @@ class User extends BunqObject
         if($method === 'GET') {
             $this->userCompany = json_decode($response->getBodyString())->{'Response'}[0]->{'UserCompany'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**

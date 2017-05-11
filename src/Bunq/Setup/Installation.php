@@ -20,7 +20,6 @@ class Installation extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint;
     private $clientPublicKey;
 
     /**
@@ -29,15 +28,6 @@ class Installation extends BunqObject
     private $id;
     private $token;
     private $serverPublicKey;
-
-    /**
-     * Installation constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -68,22 +58,6 @@ class Installation extends BunqObject
         elseif($method === 'GET') {
             $this->id = json_decode($response->getBodyString())->{'Response'}[0]->{'Id'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**

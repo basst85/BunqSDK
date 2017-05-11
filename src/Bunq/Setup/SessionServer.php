@@ -16,7 +16,6 @@ class SessionServer extends BunqObject
     /**
      * Request attributes:
      */
-    private $endpoint;
     private $secret;
 
     /**
@@ -27,15 +26,6 @@ class SessionServer extends BunqObject
     private $token;
 
     private $userCompany;
-
-    /**
-     * SessionServer constructor.
-     * @param $endpoint
-     */
-    public function __construct($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
 
     /**
      * @return array the request body as an array.
@@ -63,22 +53,6 @@ class SessionServer extends BunqObject
             $this->token = json_decode($response->getBodyString())->{'Response'}[1]->{'Token'};
             $this->userCompany = json_decode($response->getBodyString())->{'Response'}[2]->{'UserCompany'};
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndpoint()
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * @param mixed $endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
     }
 
     /**
