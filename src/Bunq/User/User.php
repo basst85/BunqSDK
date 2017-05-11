@@ -21,14 +21,6 @@ class User extends BunqObject
     private $userCompany;
 
     /**
-     * @return array the request body as an array.
-     */
-    public function getRequestBodyArray()
-    {
-        //There is no request body since this object is only used for getting data.
-    }
-
-    /**
      * Extracts the response data and stores them in the class fields.
      * @param BunqResponse $response the response returned by the server.
      * @param $method String the http method used to get the response.
