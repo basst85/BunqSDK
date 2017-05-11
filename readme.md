@@ -43,7 +43,7 @@ The correct way to use these objects to make calls is:
 This way you'll only need to specify the request attributes and the endpoint, and all the data will be easy to access from the object.
 
 
-## status
+## Status
 
 since this is a "Work in progress" project, not all API calls are implemented yet.
 Here is a list to see which ones are:
