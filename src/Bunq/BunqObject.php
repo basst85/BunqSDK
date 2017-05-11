@@ -26,7 +26,7 @@ abstract class BunqObject
      * @param BunqResponse $response the response returned by the server.
      * @param $method String the http method used to get the response.
      */
-    public abstract function serializeData(BunqResponse $response, $method);
+    public function serializeData(BunqResponse $response, $method) {}
 
     /**
      * @return mixed
