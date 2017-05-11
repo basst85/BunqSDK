@@ -33,4 +33,6 @@ class MonetaryAccountBank extends BunqObject
     /**
      * Response attributes:
      */
+    private $monetaryAccountBank;
+
 }
