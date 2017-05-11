@@ -55,7 +55,7 @@ Here is a list to see which ones are:
 	- [X] DeviceServer
 	- [ ] PermittedIp
 	- [ ] UserCredentialPasswordIp
-	- [ ] Session
+	- [X] Session
 	- [X] SessionServer
 - Payments
     - [X] Payment
