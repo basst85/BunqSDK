@@ -4,27 +4,29 @@ namespace Bunq\MonetaryAccounts;
 
 include_once('BunqObject.php');
 include_once('Client/BunqResponse.php');
+include_once('Exceptions/BunqObjectException.php');
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
+use Bunq\Exceptions\BunqObjectException;
 
 class MonetaryAccountBank extends BunqObject
 {
     /**
      * Request attributes:
      */
-    private $currency;              //Required
+    private $currency;
     private $description;
-    private $dailyLimitValue;       //Required
-    private $dailyLimitCurrency;    //Required
+    private $dailyLimitValue;
+    private $dailyLimitCurrency;
     private $avatarUuid;
     private $status;
-    private $substatus;
+    private $subStatus;
     private $reason;
     private $reasonDescription;
-    private $notificationFiltersNotificationDeliveryMethod;     //Required
-    private $notificationFiltersNotificationTarget;             //Required
-    private $notificationFiltersCategory;                       //Required
+    private $notificationFiltersNotificationDeliveryMethod;
+    private $notificationFiltersNotificationTarget;
+    private $notificationFiltersCategory;
     private $settingColor;
     private $settingDefaultAvatarStatus;
     private $settingRestrictionChat;
@@ -44,6 +46,79 @@ class MonetaryAccountBank extends BunqObject
     {
         //Since the responses for the POST, PUT and GET methods are the same, $method can be ignored.
         $this->monetaryAccountBank = json_decode($response->getBodyString())->{'Response'}[0]->{'MonetaryAccountBank'};
+    }
+
+    /**
+     * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
+     */
+    public function getRequestBodyArray()
+    {
+        if(is_null($this->dailyLimitValue) ||
+            is_null($this->dailyLimitCurrency)) {
+            throw new BunqObjectException('Missing required attributes.');
+        }
+        else {
+
+            $requestBodyArray = [
+                'daily_limit' => [
+                    'value' => $this->dailyLimitValue,
+                    'currency' => $this->dailyLimitCurrency
+                ]
+            ];
+
+            if(!is_null($this->currency)) {
+                $requestBodyArray['currency'] = $this->currency;
+            }
+
+            if(!is_null($this->description)) {
+                $requestBodyArray['description'] = $this->description;
+            }
+
+            if(!is_null($this->avatarUuid)) {
+                $requestBodyArray['avatar_uuid'] = $this->avatarUuid;
+            }
+
+            if(!is_null($this->status)) {
+                $requestBodyArray['status'] = $this->status;
+            }
+
+            if(!is_null($this->subStatus)) {
+                $requestBodyArray['sub_status'] = $this->subStatus;
+            }
+
+            if(!is_null($this->reason)) {
+                $requestBodyArray['reason'] = $this->reason;
+            }
+
+            if(!is_null($this->reasonDescription)) {
+                $requestBodyArray['reason_description'] = $this->reasonDescription;
+            }
+
+            if(!is_null($this->notificationFiltersNotificationDeliveryMethod) ||
+                !is_null($this->notificationFiltersNotificationTarget) ||
+                !is_null($this->notificationFiltersCategory)) {
+                $requestBodyArray['notification_filters'] =
+                    [
+                    'notification_delivery_method' => $this->notificationFiltersNotificationDeliveryMethod,
+                    'notification_target' => $this->notificationFiltersNotificationTarget,
+                    'category' => $this->notificationFiltersCategory
+                    ];
+            }
+
+            if(!is_null($this->settingColor) ||
+                !is_null($this->settingDefaultAvatarStatus) ||
+                !is_null($this->settingRestrictionChat)) {
+                $requestBodyArray['setting'] =
+                    [
+                        'color' => $this->settingColor,
+                        'default_avatar_status' => $this->settingDefaultAvatarStatus,
+                        'restriction_chat' => $this->settingRestrictionChat
+                    ];
+            }
+        }
+
+        return $requestBodyArray;
     }
 
     /**
@@ -145,17 +220,17 @@ class MonetaryAccountBank extends BunqObject
     /**
      * @return mixed
      */
-    public function getSubstatus()
+    public function getSubStatus()
     {
-        return $this->substatus;
+        return $this->subStatus;
     }
 
     /**
-     * @param mixed $substatus
+     * @param mixed $subStatus
      */
-    public function setSubstatus($substatus)
+    public function setSubStatus($subStatus)
     {
-        $this->substatus = $substatus;
+        $this->subStatus = $subStatus;
     }
 
     /**
