@@ -51,7 +51,7 @@ Here is a list to see which ones are:
 - Setup
 	- [X] Installation
 	- [X] InstallationServerPublicKey
-	- [ ] Device
+	- [X] Device
 	- [X] DeviceServer
 	- [ ] PermittedIp
 	- [ ] UserCredentialPasswordIp
