@@ -91,7 +91,7 @@ Here is a list to see which ones are:
     - [ ] UserCompany
 - MonetaryAccounts
     - [X] MonetaryAccount
-    - [ ] MonetaryAccountBank
+    - [X] MonetaryAccountBank
 - CashRegisters
     - [ ] CashRegister
     - [ ] CashRegisterQrCode
