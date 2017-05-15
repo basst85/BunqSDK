@@ -3,8 +3,7 @@
 
 namespace Bunq\MonetaryAccounts;
 
-include_once('BunqObject.php');
-include_once('Client/BunqResponse.php');
+require '../vendor/autoload.php';
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;

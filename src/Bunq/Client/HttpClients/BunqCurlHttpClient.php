@@ -2,10 +2,7 @@
 
 namespace Bunq\Client\HttpClients;
 
-include_once('BunqHttpClientInterface.php');
-include_once('BunqCurl.php');
-include_once('Client/Http/BunqRawResponse.php');
-include_once('Exceptions/BunqSDKException.php');
+require '../vendor/autoload.php';
 
 use Bunq\Exceptions\BunqSDKException;
 use Bunq\Client\Http\BunqRawResponse;

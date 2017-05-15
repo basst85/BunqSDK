@@ -2,6 +2,8 @@
 
 namespace Bunq\Client\HttpClients;
 
+require '../vendor/autoload.php';
+
 /**
  * Class BunqCurl
  * Abstraction for the curl elements so that curl can be mocked and implemented.

@@ -3,9 +3,7 @@
 
 namespace Bunq\Client;
 
-include_once('HttpClients/BunqCurlHttpClient.php');
-include_once('HttpClients/BunqHttpClientInterface.php');
-include_once('BunqResponse.php');
+require '../vendor/autoload.php';
 
 
 use Bunq\Client\HttpClients\BunqCurlHttpClient;

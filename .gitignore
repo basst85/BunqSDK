@@ -32,6 +32,5 @@ Temporary Items
 /vendor
 composer.lock
 
-#personal test files
-TestFile.php
+#test folder
 /tests

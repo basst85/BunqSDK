@@ -2,6 +2,8 @@
 
 namespace Bunq\Client;
 
+require '../vendor/autoload.php';
+
 use Bunq\Exceptions\BunqSDKException;
 
 /**

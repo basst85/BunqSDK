@@ -3,7 +3,7 @@
 
 namespace Bunq\Setup;
 
-include_once('BunqObject.php');
+require '../vendor/autoload.php';
 
 use Bunq\BunqObject;
 

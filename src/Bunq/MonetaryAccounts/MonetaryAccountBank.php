@@ -2,9 +2,7 @@
 
 namespace Bunq\MonetaryAccounts;
 
-include_once('BunqObject.php');
-include_once('Client/BunqResponse.php');
-include_once('Exceptions/BunqObjectException.php');
+require '../vendor/autoload.php';
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;

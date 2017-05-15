@@ -2,15 +2,7 @@
 
 namespace Bunq\Setup;
 
-
-include_once('BunqObject.php');
-include_once('Client/BunqClient.php');
-include_once('Client/BunqRequest.php');
-include_once('Client/BunqResponse.php');
-include_once('Exceptions/BunqObjectException.php');
-include_once('Exceptions/BunqVerificationException.php');
-include_once('Setup/Installation.php');
-include_once('Setup/DeviceServer.php');
+require '../vendor/autoload.php';
 
 use Bunq\BunqObject;
 use Bunq\Client\BunqClient;

@@ -2,6 +2,8 @@
 
 namespace Bunq\Client;
 
+require '../vendor/autoload.php';
+
 /**
  * Class bunqResponse
  * Decoded response from the API.
