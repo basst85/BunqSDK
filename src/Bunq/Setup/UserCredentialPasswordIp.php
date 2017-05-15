@@ -32,4 +32,70 @@ class UserCredentialPasswordIp extends BunqObject
             $this->permittedDevice = json_decode($response->getBodyString())->{'Response'}[0]->{'Permitted_device'};
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpiryTime()
+    {
+        return $this->expiryTime;
+    }
+
+    /**
+     * @param mixed $expiryTime
+     */
+    public function setExpiryTime($expiryTime)
+    {
+        $this->expiryTime = $expiryTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenValue()
+    {
+        return $this->tokenValue;
+    }
+
+    /**
+     * @param mixed $tokenValue
+     */
+    public function setTokenValue($tokenValue)
+    {
+        $this->tokenValue = $tokenValue;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPermittedDevice()
+    {
+        return $this->permittedDevice;
+    }
+
+    /**
+     * @param mixed $permittedDevice
+     */
+    public function setPermittedDevice($permittedDevice)
+    {
+        $this->permittedDevice = $permittedDevice;
+    }
+
+    
 }

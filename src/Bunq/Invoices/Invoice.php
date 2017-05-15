@@ -26,4 +26,22 @@ class Invoice extends BunqObject
             $this->invoice = json_decode($response->getBodyString())->{'Response'}[0]->{'Invoice'};
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
+    }
+
+    /**
+     * @param mixed $invoice
+     */
+    public function setInvoice($invoice)
+    {
+        $this->invoice = $invoice;
+    }
+
+
 }

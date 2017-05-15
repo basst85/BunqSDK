@@ -26,4 +26,22 @@ class InstallationServerPublicKey extends BunqObject
             $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[0]->{'ServerPublicKey'};
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getServerPublicKey()
+    {
+        return $this->serverPublicKey;
+    }
+
+    /**
+     * @param mixed $serverPublicKey
+     */
+    public function setServerPublicKey($serverPublicKey)
+    {
+        $this->serverPublicKey = $serverPublicKey;
+    }
+
+
 }
