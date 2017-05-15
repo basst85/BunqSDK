@@ -129,8 +129,8 @@ Here is a list to see which ones are:
     - [ ] AttachmentConversation
     - [ ] AttachmentConversationContent
 - Invoices
-    - [ ] Invoice
-    - [ ] InvoiceByUser
+    - [X] Invoice
+    - [X] InvoiceByUser
 - Export Statements
     - [ ] CustomerStatementExport
     - [ ] CustomerStatementExportContent
