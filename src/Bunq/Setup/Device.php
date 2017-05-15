@@ -8,12 +8,12 @@ include_once('Client/BunqResponse.php');
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
 
-class InstallationServerPublicKey extends BunqObject
+class Device extends BunqObject
 {
     /**
      * Response attributes:
      */
-    private $serverPublicKey;
+    private $device;
 
     /**
      * Extracts the response data and stores them in the class fields.
@@ -22,8 +22,17 @@ class InstallationServerPublicKey extends BunqObject
      */
     public function serializeData(BunqResponse $response, $method)
     {
+
         if($method === 'GET') {
-            $this->serverPublicKey = json_decode($response->getBodyString())->{'Response'}[0]->{'ServerPublicKey'};
+            $decoded = json_decode($response->getBodyString())->{'Response'}[0];
+            if(property_exists($decoded, 'DevicePhone')) {
+                $this->device = $decoded->{'DevicePhone'};
+            }
+
+            elseif(property_exists($decoded, 'DeviceServer')){
+                $this->device = $decoded->{'DeviceServer'};
+            }
+
         }
     }
 }
