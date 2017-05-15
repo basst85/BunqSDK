@@ -1,6 +1,6 @@
 # Bunq-SDK
 
-***Disclaimer: This project is not made by the company bunq itself.
+**Disclaimer: This project is not made by the company bunq itself.**
 
 This SDK is used to communicate with the bunq public API using PHP. For more info on this API please visit doc.bunq.com
 each object in this SDK corresponds with an API call.
