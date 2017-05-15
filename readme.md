@@ -53,7 +53,7 @@ Here is a list to see which ones are:
 	- [X] InstallationServerPublicKey
 	- [X] Device
 	- [X] DeviceServer
-	- [ ] PermittedIp
+	- [X] PermittedIp
 	- [ ] UserCredentialPasswordIp
 	- [X] Session
 	- [X] SessionServer
