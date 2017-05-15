@@ -54,18 +54,7 @@ class MonetaryAccountBank extends BunqObject
      */
     public function getRequestBodyArray()
     {
-        if(is_null($this->dailyLimitValue) ||
-            is_null($this->dailyLimitCurrency)) {
-            throw new BunqObjectException('Missing required attributes.');
-        }
-        else {
-
-            $requestBodyArray = [
-                'daily_limit' => [
-                    'value' => $this->dailyLimitValue,
-                    'currency' => $this->dailyLimitCurrency
-                ]
-            ];
+        $requestBodyArray = [];
 
             if(!is_null($this->currency)) {
                 $requestBodyArray['currency'] = $this->currency;
@@ -73,6 +62,16 @@ class MonetaryAccountBank extends BunqObject
 
             if(!is_null($this->description)) {
                 $requestBodyArray['description'] = $this->description;
+            }
+
+            if(!is_null($this->dailyLimitCurrency) &&
+                !is_null($this->dailyLimitValue)) {
+                $requestBodyArray = [
+                    'daily_limit' => [
+                        'value' => $this->dailyLimitValue,
+                        'currency' => $this->dailyLimitCurrency
+                    ]
+                ];
             }
 
             if(!is_null($this->avatarUuid)) {
@@ -95,8 +94,8 @@ class MonetaryAccountBank extends BunqObject
                 $requestBodyArray['reason_description'] = $this->reasonDescription;
             }
 
-            if(!is_null($this->notificationFiltersNotificationDeliveryMethod) ||
-                !is_null($this->notificationFiltersNotificationTarget) ||
+            if(!is_null($this->notificationFiltersNotificationDeliveryMethod) &&
+                !is_null($this->notificationFiltersNotificationTarget) &&
                 !is_null($this->notificationFiltersCategory)) {
                 $requestBodyArray['notification_filters'] =
                     [
@@ -116,7 +115,6 @@ class MonetaryAccountBank extends BunqObject
                         'restriction_chat' => $this->settingRestrictionChat
                     ];
             }
-        }
 
         return $requestBodyArray;
     }
