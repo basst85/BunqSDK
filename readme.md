@@ -174,4 +174,18 @@ Getting the balance from a monetary account:
     
     //Extract the balance.
     $monetaryAccount->getMonetaryAccountBank()->{'balance'};
+    
+Creating a new monetary account:
+    
+    //Create the monetaryAccountBank object with the correct endpoint.
+    $monetaryAccountBank = new MonetaryAccountBank('user/' . $userId . 'monetary-account-bank');
+    
+    //Add the data to the monetaryAccountBank object.
+    $monetaryAccountBank->setCurrency('EUR');
+    $monetaryAccountBank->setDescription('Groceries');
+    $monetaryAccountBank->setDailyLimitValue('13.37');
+    $monetaryAccountBank->setDailyLimitCurrency('EUR');
+    
+    //Execute the POST request.
+    $session->post($monetaryAccountBank);
   
