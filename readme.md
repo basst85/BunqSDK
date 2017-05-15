@@ -50,7 +50,7 @@ Here is a list to see which ones are:
 
 - Setup
 	- [X] Installation
-	- [ ] InstallationServerPublicKey
+	- [X] InstallationServerPublicKey
 	- [ ] Device
 	- [X] DeviceServer
 	- [ ] PermittedIp
