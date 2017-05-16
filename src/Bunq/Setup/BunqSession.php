@@ -25,13 +25,6 @@ class BunqSession
      * The keys for signing requests.
      */
     private $clientPrivateKey;
-    private $serverPublicKey;
-
-    /**
-     * The data for this session.
-     */
-    private $sessionId;
-    private $sessionToken;
 
     /**
      * @var array the requestHeaders for this session.
@@ -76,8 +69,9 @@ class BunqSession
      * Creates an installation on the server.
      * Stores the installation data in the given object.
      * Extracts the needed data for the session.
+     * @param Installation $object
      */
-    public function createInstallation(BunqObject $object)
+    public function createInstallation(Installation $object)
     {
         //Create the data needed for the BunqRequest.
         $requestEndpoint = $object->getEndpoint();
@@ -95,17 +89,14 @@ class BunqSession
 
         //Store the installation for future use.
         $this->installation = $object;
-        $this->serverPublicKey = $this->installation->getServerPublicKey()->{'server_public_key'};
-
     }
 
     /**
      * Creates a deviceServer.
      *
-     * @param BunqObject $object the deviceServerObject.
-     * @throws BunqVerificationException thrown if the response verification fails.
+     * @param BunqObject|DeviceServer $object the deviceServerObject.
      */
-    public function createDeviceServer(BunqObject $object)
+    public function createDeviceServer(DeviceServer $object)
     {
         //Use the post method to create a deviceServer.
         $this->post($object);
@@ -117,18 +108,15 @@ class BunqSession
     /**
      * Creates a sessionServer.
      *
-     * @param BunqObject $object the sessionServer object.
-     * @throws BunqVerificationException thrown if the response verification fails.
+     * @param BunqObject|SessionServer $object the sessionServer object.
      */
-    public function createSessionServer(BunqObject $object)
+    public function createSessionServer(SessionServer $object)
     {
         //Use the post method to create a sessionServer.
         $this->post($object);
 
         //Store the device server for future use.
         $this->sessionServer = $object;
-        $this->sessionId = $this->sessionServer->getId()->{'id'};
-        $this->sessionToken = $this->sessionServer->getToken()->{'token'};
     }
 
     /**
@@ -158,7 +146,7 @@ class BunqSession
         $response = $this->httpClient->SendRequest($request);
 
         //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+        if(!$this->httpClient->verifyResponseSignature($response, $this->installation->getServerPublicKey()->{'server_public_key'})) {
             throw new BunqVerificationException('Response verification failed.');
         }
 
@@ -192,7 +180,7 @@ class BunqSession
         $response = $this->httpClient->SendRequest($request);
 
         //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+        if(!$this->httpClient->verifyResponseSignature($response, $this->installation->getServerPublicKey()->{'server_public_key'})) {
             throw new BunqVerificationException('Response verification failed.');
         }
 
@@ -226,7 +214,7 @@ class BunqSession
         $response = $this->httpClient->SendRequest($request);
 
         //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+        if(!$this->httpClient->verifyResponseSignature($response, $this->installation->getServerPublicKey()->{'server_public_key'})) {
             throw new BunqVerificationException('Response verification failed.');
         }
     }
@@ -258,7 +246,7 @@ class BunqSession
         $response = $this->httpClient->SendRequest($request);
 
         //Verify the response.
-        if(!$this->httpClient->verifyResponseSignature($response, $this->serverPublicKey)) {
+        if(!$this->httpClient->verifyResponseSignature($response, $this->installation->getServerPublicKey()->{'server_public_key'})) {
             throw new BunqVerificationException('Response verification failed.');
         }
 
@@ -321,54 +309,6 @@ class BunqSession
     public function setClientPrivateKey($clientPrivateKey)
     {
         $this->clientPrivateKey = $clientPrivateKey;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getServerPublicKey()
-    {
-        return $this->serverPublicKey;
-    }
-
-    /**
-     * @param mixed $serverPublicKey
-     */
-    public function setServerPublicKey($serverPublicKey)
-    {
-        $this->serverPublicKey = $serverPublicKey;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSessionId()
-    {
-        return $this->sessionId;
-    }
-
-    /**
-     * @param mixed $sessionId
-     */
-    public function setSessionId($sessionId)
-    {
-        $this->sessionId = $sessionId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSessionToken()
-    {
-        return $this->sessionToken;
-    }
-
-    /**
-     * @param mixed $sessionToken
-     */
-    public function setSessionToken($sessionToken)
-    {
-        $this->sessionToken = $sessionToken;
     }
 
     /**
