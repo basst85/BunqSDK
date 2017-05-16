@@ -307,4 +307,148 @@ class BunqSession
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($randomInput), 4));
     }
 
+    /**
+     * @return mixed
+     */
+    public function getClientPrivateKey()
+    {
+        return $this->clientPrivateKey;
+    }
+
+    /**
+     * @param mixed $clientPrivateKey
+     */
+    public function setClientPrivateKey($clientPrivateKey)
+    {
+        $this->clientPrivateKey = $clientPrivateKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServerPublicKey()
+    {
+        return $this->serverPublicKey;
+    }
+
+    /**
+     * @param mixed $serverPublicKey
+     */
+    public function setServerPublicKey($serverPublicKey)
+    {
+        $this->serverPublicKey = $serverPublicKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionId()
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param mixed $sessionId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionToken()
+    {
+        return $this->sessionToken;
+    }
+
+    /**
+     * @param mixed $sessionToken
+     */
+    public function setSessionToken($sessionToken)
+    {
+        $this->sessionToken = $sessionToken;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaultHeaders()
+    {
+        return $this->defaultHeaders;
+    }
+
+    /**
+     * @param array $defaultHeaders
+     */
+    public function setDefaultHeaders($defaultHeaders)
+    {
+        $this->defaultHeaders = $defaultHeaders;
+    }
+
+    /**
+     * @return BunqClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * @param BunqClient $httpClient
+     */
+    public function setHttpClient($httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @return Installation
+     */
+    public function getInstallation()
+    {
+        return $this->installation;
+    }
+
+    /**
+     * @param Installation $installation
+     */
+    public function setInstallation($installation)
+    {
+        $this->installation = $installation;
+    }
+
+    /**
+     * @return DeviceServer
+     */
+    public function getDeviceServer()
+    {
+        return $this->deviceServer;
+    }
+
+    /**
+     * @param DeviceServer $deviceServer
+     */
+    public function setDeviceServer($deviceServer)
+    {
+        $this->deviceServer = $deviceServer;
+    }
+
+    /**
+     * @return SessionServer
+     */
+    public function getSessionServer()
+    {
+        return $this->sessionServer;
+    }
+
+    /**
+     * @param SessionServer $sessionServer
+     */
+    public function setSessionServer($sessionServer)
+    {
+        $this->sessionServer = $sessionServer;
+    }
+
 }
