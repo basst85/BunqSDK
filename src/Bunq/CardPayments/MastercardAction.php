@@ -64,4 +64,340 @@ class MastercardAction extends BunqObject
             $this->allowChat = json_decode($response->getBodyString())->{'Response'}[0]->{'allow_chat'};
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMonetaryAccountId()
+    {
+        return $this->monetaryAccountId;
+    }
+
+    /**
+     * @param mixed $monetaryAccountId
+     */
+    public function setMonetaryAccountId($monetaryAccountId)
+    {
+        $this->monetaryAccountId = $monetaryAccountId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardId()
+    {
+        return $this->cardId;
+    }
+
+    /**
+     * @param mixed $cardId
+     */
+    public function setCardId($cardId)
+    {
+        $this->cardId = $cardId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountLocal()
+    {
+        return $this->amountLocal;
+    }
+
+    /**
+     * @param mixed $amountLocal
+     */
+    public function setAmountLocal($amountLocal)
+    {
+        $this->amountLocal = $amountLocal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountBilling()
+    {
+        return $this->amountBilling;
+    }
+
+    /**
+     * @param mixed $amountBilling
+     */
+    public function setAmountBilling($amountBilling)
+    {
+        $this->amountBilling = $amountBilling;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountOriginalLocal()
+    {
+        return $this->amountOriginalLocal;
+    }
+
+    /**
+     * @param mixed $amountOriginalLocal
+     */
+    public function setAmountOriginalLocal($amountOriginalLocal)
+    {
+        $this->amountOriginalLocal = $amountOriginalLocal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountOriginalBilling()
+    {
+        return $this->amountOriginalBilling;
+    }
+
+    /**
+     * @param mixed $amountOriginalBilling
+     */
+    public function setAmountOriginalBilling($amountOriginalBilling)
+    {
+        $this->amountOriginalBilling = $amountOriginalBilling;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountFee()
+    {
+        return $this->amountFee;
+    }
+
+    /**
+     * @param mixed $amountFee
+     */
+    public function setAmountFee($amountFee)
+    {
+        $this->amountFee = $amountFee;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDecision()
+    {
+        return $this->decision;
+    }
+
+    /**
+     * @param mixed $decision
+     */
+    public function setDecision($decision)
+    {
+        $this->decision = $decision;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDecisionDescription()
+    {
+        return $this->decisionDescription;
+    }
+
+    /**
+     * @param mixed $decisionDescription
+     */
+    public function setDecisionDescription($decisionDescription)
+    {
+        $this->decisionDescription = $decisionDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDecisionDescriptionTranslated()
+    {
+        return $this->decisionDescriptionTranslated;
+    }
+
+    /**
+     * @param mixed $decisionDescriptionTranslated
+     */
+    public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
+    {
+        $this->decisionDescriptionTranslated = $decisionDescriptionTranslated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorisationStatus()
+    {
+        return $this->authorisationStatus;
+    }
+
+    /**
+     * @param mixed $authorisationStatus
+     */
+    public function setAuthorisationStatus($authorisationStatus)
+    {
+        $this->authorisationStatus = $authorisationStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorisationType()
+    {
+        return $this->authorisationType;
+    }
+
+    /**
+     * @param mixed $authorisationType
+     */
+    public function setAuthorisationType($authorisationType)
+    {
+        $this->authorisationType = $authorisationType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @param mixed $alias
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCounterPartyAlias()
+    {
+        return $this->counterPartyAlias;
+    }
+
+    /**
+     * @param mixed $counterPartyAlias
+     */
+    public function setCounterPartyAlias($counterPartyAlias)
+    {
+        $this->counterPartyAlias = $counterPartyAlias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLabelCard()
+    {
+        return $this->labelCard;
+    }
+
+    /**
+     * @param mixed $labelCard
+     */
+    public function setLabelCard($labelCard)
+    {
+        $this->labelCard = $labelCard;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenStatus()
+    {
+        return $this->tokenStatus;
+    }
+
+    /**
+     * @param mixed $tokenStatus
+     */
+    public function setTokenStatus($tokenStatus)
+    {
+        $this->tokenStatus = $tokenStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReservationExpiryTime()
+    {
+        return $this->reservationExpiryTime;
+    }
+
+    /**
+     * @param mixed $reservationExpiryTime
+     */
+    public function setReservationExpiryTime($reservationExpiryTime)
+    {
+        $this->reservationExpiryTime = $reservationExpiryTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAppliedLimit()
+    {
+        return $this->appliedLimit;
+    }
+
+    /**
+     * @param mixed $appliedLimit
+     */
+    public function setAppliedLimit($appliedLimit)
+    {
+        $this->appliedLimit = $appliedLimit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllowChat()
+    {
+        return $this->allowChat;
+    }
+
+    /**
+     * @param mixed $allowChat
+     */
+    public function setAllowChat($allowChat)
+    {
+        $this->allowChat = $allowChat;
+    }
 }
