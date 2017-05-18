@@ -89,7 +89,7 @@ Here is a list to see which ones are:
 - CardPayments
     - [X] MastercardAction
 - IdealPayments
-    - [ ] TokenQrRequestIdeal
+    - [X] TokenQrRequestIdeal
 - User
     - [X] User
     - [ ] UserPerson
