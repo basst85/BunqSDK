@@ -87,7 +87,7 @@ Here is a list to see which ones are:
     - [ ] TabResultInquiry
     - [ ] TabResultResponse
 - CardPayments
-    - [ ] MastercardAction
+    - [X] MastercardAction
 - IdealPayments
     - [ ] TokenQrRequestIdeal
 - User
