@@ -38,6 +38,11 @@ class MastercardAction extends BunqObject
     private $appliedLimit;
     private $allowChat;
 
+    /**
+     * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
+     * @param $method String the http method used to get the response.
+     */
     public function serializeData(BunqResponse $response, $method)
     {
         if($method === 'GET') {
