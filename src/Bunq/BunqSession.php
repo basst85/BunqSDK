@@ -1,10 +1,12 @@
 <?php
 
-namespace Bunq\Setup;
+namespace Bunq;
 
 require '../vendor/autoload.php';
 
-use Bunq\BunqObject;
+use Bunq\Setup\Installation;
+use Bunq\Setup\DeviceServer;
+use Bunq\Setup\SessionServer;
 use Bunq\Client\BunqClient;
 use Bunq\Client\BunqRequest;
 use Bunq\Client\BunqResponse;
