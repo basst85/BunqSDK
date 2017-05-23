@@ -16,6 +16,11 @@ abstract class BunqObject
      */
     private $endpoint;
 
+    /**
+     * @var String the response body string retrieved after calling the endpoint.
+     */
+    private $response;
+
     public function __construct($endpoint)
     {
         $this->endpoint = $endpoint;
@@ -43,4 +48,22 @@ abstract class BunqObject
     {
         $this->endpoint = $endpoint;
     }
+
+    /**
+     * @return String
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param String $response
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
+    }
+
+
 }
