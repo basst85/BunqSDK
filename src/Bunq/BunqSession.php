@@ -88,6 +88,7 @@ class BunqSession
 
         //Extract and store the returned data.
         $object->serializeData($installationResponse, 'POST');
+        $object->setResponse(json_decode($installationResponse));
 
         //Store the installation for future use.
         $this->installation = $object;
@@ -154,6 +155,7 @@ class BunqSession
 
         //Extract and store the returned data.
         $object->serializeData($response, 'POST');
+        $object->setResponse(json_decode($response));
     }
 
     /**
@@ -188,6 +190,7 @@ class BunqSession
 
         //Extract and store the returned data.
         $object->serializeData($response, 'GET');
+        $object->setResponse(json_decode($response));
     }
 
     /**
@@ -254,6 +257,7 @@ class BunqSession
 
         //Extract and store the returned data.
         $object->serializeData($response, 'PUT');
+        $object->setResponse(json_decode($response));
     }
 
     public function getRequestHeaders()
