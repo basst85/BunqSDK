@@ -36,6 +36,10 @@ class PaymentBatch extends BunqObject
         return $requestBodyArray;
     }
 
+    /**
+     * @param BunqResponse $response
+     * @param String $method
+     */
     public function serializeData(BunqResponse $response, $method)
     {
         //Since the responses for the different HTTP methods are the same, $method can be ignored.
