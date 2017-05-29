@@ -64,7 +64,7 @@ Here is a list to see which ones are:
 	- [X] SessionServer
 - Payments
     - [X] Payment
-    - [ ] PaymentBatch
+    - [X] PaymentBatch
 - Requests
     - [ ] RequestInquiry
     - [ ] RequestInquiryBatch
