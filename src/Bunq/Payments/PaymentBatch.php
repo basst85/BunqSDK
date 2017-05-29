@@ -39,7 +39,7 @@ class PaymentBatch extends BunqObject
     public function serializeData(BunqResponse $response, $method)
     {
         //Since the responses for the different HTTP methods are the same, $method can be ignored.
-        $this->responsePayments = json_decode($response->getBodyString())->{'Response'}[0]->{'payments'};
+        $this->responsePayments = json_decode($response->getBodyString())->{'Response'}[0]->{'PaymentBatch'};
     }
 
     /**
