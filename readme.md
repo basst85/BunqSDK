@@ -64,7 +64,7 @@ Here is a list to see which ones are:
 	- [X] SessionServer
 - Payments
     - [X] Payment
-    - [X] PaymentBatch
+    - [X] PaymentBatch -> PUT method broken (Waiting on bunq for fix). 
 - Requests
     - [ ] RequestInquiry
     - [ ] RequestInquiryBatch
