@@ -41,4 +41,36 @@ class PaymentBatch extends BunqObject
         //Since the responses for the different HTTP methods are the same, $method can be ignored.
         $this->responsePayments = json_decode($response->getBodyString())->{'Response'}[0]->{'payments'};
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestPayments()
+    {
+        return $this->requestPayments;
+    }
+
+    /**
+     * @param mixed $requestPayments
+     */
+    public function setRequestPayments($requestPayments)
+    {
+        $this->requestPayments = $requestPayments;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponsePayments()
+    {
+        return $this->responsePayments;
+    }
+
+    /**
+     * @param mixed $responsePayments
+     */
+    public function setResponsePayments($responsePayments)
+    {
+        $this->responsePayments = $responsePayments;
+    }
 }
