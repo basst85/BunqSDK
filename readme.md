@@ -68,8 +68,8 @@ Here is a list to see which ones are:
     - [X] Payment
     - [X] PaymentBatch -> PUT method broken (Waiting on bunq for fix). 
 - Requests
-    - [ ] RequestInquiry
-    - [ ] RequestInquiryBatch
+    - [X] RequestInquiry
+    - [X] RequestInquiryBatch
     - [ ] RequestResponse
 - DraftPayments
     - [ ] DraftPayment
