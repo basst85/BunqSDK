@@ -2,8 +2,6 @@
 
 namespace Bunq\Client\HttpClients;
 
-require '../vendor/autoload.php';
-
 use Bunq\Exceptions\BunqSDKException;
 use Bunq\Client\Http\BunqRawResponse;
 

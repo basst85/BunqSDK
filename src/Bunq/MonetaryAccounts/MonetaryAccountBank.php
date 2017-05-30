@@ -2,8 +2,6 @@
 
 namespace Bunq\MonetaryAccounts;
 
-require '../vendor/autoload.php';
-
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
 use Bunq\Exceptions\BunqObjectException;

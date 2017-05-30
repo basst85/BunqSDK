@@ -2,8 +2,6 @@
 
 namespace Bunq\Client\Http;
 
-require '../vendor/autoload.php';
-
 /**
  * Class BunqRawResponse
  * The raw response used by the BunqCurlHttpClient.

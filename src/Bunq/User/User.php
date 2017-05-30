@@ -2,8 +2,6 @@
 
 namespace Bunq\User;
 
-require '../vendor/autoload.php';
-
 use Bunq\BunqObject;
 use Bunq\Client\BunqResponse;
 

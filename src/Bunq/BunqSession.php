@@ -2,8 +2,6 @@
 
 namespace Bunq;
 
-require '../vendor/autoload.php';
-
 use Bunq\Setup\Installation;
 use Bunq\Setup\DeviceServer;
 use Bunq\Setup\SessionServer;

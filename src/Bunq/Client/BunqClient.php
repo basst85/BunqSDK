@@ -3,9 +3,6 @@
 
 namespace Bunq\Client;
 
-require '../vendor/autoload.php';
-
-
 use Bunq\Client\HttpClients\BunqCurlHttpClient;
 use Bunq\Client\HttpClients\BunqHttpClientInterface;
 
