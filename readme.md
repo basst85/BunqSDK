@@ -11,6 +11,8 @@ Please note that this SDK is currently made to connect with the sandbox API. For
 
  - In src/Bunq/Client/Bunqclient.php change the constant "https://sandbox.public.api.bunq.com" to "https://api.bunq.com".
  - You're now ready to use the SDK with the real world API!
+ 
+For full programming examples, please see the examples folder.
 
 The first steps in making API calls is creating an Installation, DeviceServer and starting a session this is done in the BunqSession class:
 
@@ -146,6 +148,7 @@ Here is a list to see which ones are:
 ## Examples
 
 Here are some more examples.
+For full programming examples, please see the examples folder.
 
 Posting a new installation:
 
