@@ -7,7 +7,7 @@ each object in this SDK corresponds with an API call.
 
 ## Usage
 
-Please note that this branch is the real world version! for the sandbox version, please checkout the "sandbox" branch.
+Please note that this branch is the sandbox version! for the real world version, please checkout the "master" branch.
  
 For full programming examples, please see the examples folder.
 
