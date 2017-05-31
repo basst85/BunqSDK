@@ -7,10 +7,7 @@ each object in this SDK corresponds with an API call.
 
 ## Usage
 
-Please note that this SDK is currently made to connect with the sandbox API. For usage with the real world API the following change should be made:
-
- - In src/Bunq/Client/Bunqclient.php change the constant "https://sandbox.public.api.bunq.com" to "https://api.bunq.com".
- - You're now ready to use the SDK with the real world API!
+Please note that this branch is the real world version! for the sandbox version, please checkout the "sandbox" branch.
  
 For full programming examples, please see the examples folder.
 
