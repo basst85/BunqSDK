@@ -31,6 +31,10 @@ class RequestInquiry extends BunqObject
     private $id;
     private $requestInquiry;
 
+    /**
+     * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
+     */
     public function getRequestBodyArray()
     {
         if(is_null($this->amountInquiredValue) ||
@@ -93,6 +97,11 @@ class RequestInquiry extends BunqObject
         return $requestBodyArray;
     }
 
+    /**
+     * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
+     * @param $method String the http method used to get the response.
+     */
     public function serializeData(BunqResponse $response, $method)
     {
         if($method === 'POST') {

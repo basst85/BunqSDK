@@ -26,6 +26,10 @@ class RequestInquiryBatch extends BunqObject
     private $requestInquiriesResponse;
     private $totalAmountInquiredResponse;
 
+    /**
+     * @return array the request body as an array.
+     * @throws BunqObjectException thrown if the required attributes are missing.
+     */
     public function getRequestBodyArray()
     {
         if(is_null($this->requestInquiriesRequest) ||
@@ -44,6 +48,11 @@ class RequestInquiryBatch extends BunqObject
         return $requestBodyArray;
     }
 
+    /**
+     * Extracts the response data and stores them in the class fields.
+     * @param BunqResponse $response the response returned by the server.
+     * @param $method String the http method used to get the response.
+     */
     public function serializeData(BunqResponse $response, $method)
     {
         //Since the responses for the different HTTP methods are the same, $method can be ignored.
