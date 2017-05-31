@@ -70,7 +70,7 @@ Here is a list to see which ones are:
 - Requests
     - [X] RequestInquiry
     - [X] RequestInquiryBatch
-    - [ ] RequestResponse
+    - [X] RequestResponse
 - DraftPayments
     - [ ] DraftPayment
 - ScheduledPayments
