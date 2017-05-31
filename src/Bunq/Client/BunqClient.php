@@ -18,7 +18,7 @@ class BunqClient
      * The serviceUrl is the base URL of the API.
      * The apiVersion is the version of the API.
      */
-    const BUNQ_API_SERVICE_URL = 'https://sandbox.public.api.bunq.com';
+    const BUNQ_API_SERVICE_URL = 'https://api.bunq.com';
     const BUNQ_API_VERSION = 'v1';
 
     /**
